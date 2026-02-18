@@ -1,0 +1,28 @@
+@config "../../tailwind.config.js";
+@import "tailwindcss";
+
+@layer base {
+  body { font-family: 'Inter', sans-serif; }
+}
+
+@layer utilities {
+  .glass-card { background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5); }
+  .blob { position: absolute;
+  filter: blur(40px);
+  z-index: -1;
+  opacity: 0.4;
+  animation: float 10s infinite ease-in-out; }
+  @keyframes float {
+  
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+  
+    50% {
+      transform: translate(20px, -20px) scale(1.1);
+    }
+  }
+}
