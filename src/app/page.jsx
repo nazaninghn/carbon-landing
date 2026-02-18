@@ -1,355 +1,585 @@
+'use client';
+
+import { useState } from 'react';
 import { Badge } from '@/components/Badge';
-import { Button } from '@/components/Button';
 import { Icon } from '@/components/Icon';
 import { Image } from '@/components/Image';
 import { Link } from '@/components/Link';
 import { Text } from '@/components/Text';
-
-export const metadata = {
-  title: 'Climate Tech - Free Tailwind Template',
-  description:  'Download this free Tailwind CSS Saas website template for Climate Tech. Features a modern design, fully responsive layout, and includes 6 pre-built pages like blog.html, index.html, about.html.',
-};
+import { useLanguage } from '@/components/LanguageProvider';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { Card3D } from '@/components/Card3D';
+import { ScrollReveal } from '@/components/ScrollReveal';
 
 export default function Page() {
+  const { t } = useLanguage();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
-    <div className="bg-slate-50 text-slate-900 pt-20">
-      <>
-        <header id="main-header" className="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-emerald-100 transition-all duration-300">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <div className="flex items-center justify-between h-20">
-              {/* Logo */}
-              <Link className="flex items-center gap-2 group" href="index.html"><div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-emerald-200 group-hover:shadow-emerald-300 transition-all">
-                <Icon className="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></Icon>
+    <div className="bg-white">
+      {/* Clean Modern Header */}
+      <header className="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-sm">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="flex items-center justify-between h-20">
+            <Link className="flex items-center gap-3 group" href="/">
+              <div className="relative w-12 h-12 flex items-center justify-center">
+                <Image 
+                  src="/logo.png"
+                  alt="Carbonless Network Logo"
+                  className="w-full h-full object-contain"
+                />
               </div>
-              <Text variant="bold" className="text-xl font-bold text-emerald-950 tracking-tight"> EcoTrack </Text></Link>
-              {/* Desktop Nav */}
-              <nav className="hidden md:flex items-center gap-8">
-                <Link variant="nav" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors nav-link" href="index.html"> Home </Link>
-                <Link variant="nav" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors nav-link" href="services.html"> Platform </Link>
-                <Link variant="nav" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors nav-link" href="about.html"> Mission </Link>
-                <Link variant="nav" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors nav-link" href="blog.html"> Insights </Link>
-                <Link variant="nav" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors nav-link" href="pricing.html"> Pricing </Link>
-              </nav>
-              {/* CTA & Mobile Toggle */}
-              <div className="flex items-center gap-4">
-                <Link variant="inline" contentKey="cta_23" className="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-semibold text-white transition-all duration-200 bg-emerald-600 rounded-full hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-600" href="contact.html"> Book Demo </Link>
-                <Button className="md:hidden p-2 text-gray-600 hover:text-emerald-600 transition-colors" id="mobile-menu-btn"><Icon className="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></Icon></Button>
+              <div>
+                <Text className="text-xl font-black bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Carbonless</Text>
+                <Text className="text-xs text-emerald-600 font-bold tracking-widest">NETWORK</Text>
               </div>
+            </Link>
+            
+            <nav className="hidden md:flex items-center gap-8">
+              <Link className="text-sm font-bold text-emerald-600" href="/">{t.nav.home}</Link>
+              <Link className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors" href="/products">{t.nav.products}</Link>
+              <Link className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors" href="/methodology">{t.nav.methodology}</Link>
+              <Link className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors" href="/about">{t.nav.about}</Link>
+              <Link className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors" href="/contact">{t.nav.contact}</Link>
+            </nav>
+            
+            <div className="flex items-center gap-4">
+              <LanguageSwitcher />
+              <Link className="hidden md:inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full hover:shadow-xl hover:shadow-emerald-300 transition-all hover:scale-105" href="/contact">
+                {t.hero.cta2}
+              </Link>
+              
+              {/* Mobile Menu Button */}
+              <button 
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden p-2 text-slate-700 hover:text-emerald-600 transition-colors"
+                aria-label="Toggle menu"
+              >
+                <Icon className="w-6 h-6" viewBox="0 0 24 24" fill="none">
+                  {mobileMenuOpen ? (
+                    <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  ) : (
+                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  )}
+                </Icon>
+              </button>
             </div>
           </div>
+          
           {/* Mobile Menu */}
-          <div id="mobile-menu" className="fixed inset-0 z-40 bg-white transform translate-x-full transition-transform duration-300 md:hidden pt-24 px-6">
-            <div className="flex flex-col gap-6 text-lg font-medium text-gray-800">
-              <Link className="hover:text-emerald-600 transition-colors" href="index.html"> Home </Link>
-              <Link className="hover:text-emerald-600 transition-colors" href="services.html"> Platform </Link>
-              <Link className="hover:text-emerald-600 transition-colors" href="about.html"> Mission </Link>
-              <Link className="hover:text-emerald-600 transition-colors" href="blog.html"> Insights </Link>
-              <Link className="hover:text-emerald-600 transition-colors" href="pricing.html"> Pricing </Link>
-              <Link contentKey="cta_24" className="mt-4 w-full text-center px-6 py-3 text-white bg-emerald-600 rounded-full hover:bg-emerald-700" href="contact.html"> Book Demo </Link>
+          {mobileMenuOpen && (
+            <div className="md:hidden border-t border-slate-200 py-4">
+              <nav className="flex flex-col gap-4">
+                <Link className="text-sm font-bold text-emerald-600 px-4 py-2" href="/" onClick={() => setMobileMenuOpen(false)}>{t.nav.home}</Link>
+                <Link className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors px-4 py-2" href="/products" onClick={() => setMobileMenuOpen(false)}>{t.nav.products}</Link>
+                <Link className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors px-4 py-2" href="/methodology" onClick={() => setMobileMenuOpen(false)}>{t.nav.methodology}</Link>
+                <Link className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors px-4 py-2" href="/about" onClick={() => setMobileMenuOpen(false)}>{t.nav.about}</Link>
+                <Link className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors px-4 py-2" href="/contact" onClick={() => setMobileMenuOpen(false)}>{t.nav.contact}</Link>
+                <Link className="inline-flex items-center justify-center mx-4 px-6 py-3 text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full" href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                  {t.hero.cta2}
+                </Link>
+              </nav>
             </div>
-          </div>
-        </header>
-        {/* Hero Section */}
-        <section id="hero" className="relative overflow-hidden pt-16 pb-24 lg:pt-32 lg:pb-40">
-          {/* Background Blobs */}
-          <div className="blob bg-emerald-300 w-96 h-96 rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
-          <div className="blob bg-teal-200 w-80 h-80 rounded-full bottom-0 right-0 translate-x-1/3 translate-y-1/3 animation-delay-2000"></div>
-          <div className="container mx-auto px-4 max-w-7xl relative z-10">
-            <div className="flex flex-col lg:flex-row items-center gap-16">
-              {/* Text Content */}
-              <div className="lg:w-1/2 space-y-8">
-                <Badge className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-800 text-sm font-medium"><Text className="relative flex h-2 w-2"><Text className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <Text className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" /></Text>
-                 New: AI-Powered Supply Chain Analysis </Badge>
-                <h1 className="text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-tight">
-                   Decarbonize your business with 
-                  <Text className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-teal-500"> precision </Text>
-                   . 
-                </h1>
-                <p className="text-xl text-slate-600 leading-relaxed max-w-lg">
-                   The all-in-one platform to measure, report, and reduce your carbon footprint. Turn sustainability into your competitive advantage. 
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link variant="inline" contentKey="cta_25" className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-200 bg-emerald-600 rounded-full hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-200" href="contact.html"> Start Free Trial </Link>
-                  <Link variant="inline" contentKey="cta_26" className="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-700 transition-all duration-200 bg-white border border-slate-200 rounded-full hover:bg-slate-50 hover:border-emerald-200" href="services.html"> View Demo </Link>
-                </div>
-                <div className="flex items-center gap-4 text-sm text-slate-500">
-                  <div className="flex -space-x-2">
-                    <div className="w-8 h-8 rounded-full bg-slate-200 border-2 border-white"></div>
-                    <div className="w-8 h-8 rounded-full bg-slate-300 border-2 border-white"></div>
-                    <div className="w-8 h-8 rounded-full bg-slate-400 border-2 border-white"></div>
+          )}
+        </div>
+      </header>
+
+      {/* Beautiful Hero Section */}
+      <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=1920&q=80"
+            alt="Sustainability background"
+            className="w-full h-full object-cover opacity-[0.08]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-white/92 via-white/88 to-emerald-50/85"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="space-y-6 lg:space-y-8 text-center lg:text-left">
+              <Badge className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-emerald-200 shadow-sm animate-fade-in">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-600"></span>
+                </span>
+                <span className="text-sm font-bold text-emerald-700">{t.hero.badge}</span>
+              </Badge>
+              
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight animate-slide-up mb-6 lg:mb-8">
+                <span className="text-slate-900">Carbon &</span>
+                <br />
+                <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">Sustainability</span>
+                <br />
+                <span className="text-slate-900">Intelligence</span>
+              </h1>
+              
+              <p className="text-lg sm:text-xl text-slate-600 leading-[1.6] max-w-xl mx-auto lg:mx-0 animate-fade-in-delay">
+                Carbonless Network provides structured digital infrastructure for carbon accounting and sustainability management. Our platform enables organizations to measure emissions, evaluate sustainability performance, and support standards-aligned environmental reporting and institutional sustainability systems.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in-delay-2 justify-center lg:justify-start">
+                <Link className="group inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full shadow-lg shadow-emerald-200 hover:shadow-xl hover:shadow-emerald-300 transition-all hover:scale-105" href="/products">
+                  {t.hero.cta1}
+                  <Icon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none">
+                    <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </Icon>
+                </Link>
+                
+                <Link className="inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-slate-700 bg-white border-2 border-slate-200 rounded-full hover:border-emerald-300 hover:shadow-lg transition-all hover:scale-105" href="/contact">
+                  {t.hero.cta2}
+                </Link>
+              </div>
+              
+              <div className="flex items-center gap-6 pt-8 animate-fade-in-delay-3 justify-center lg:justify-start">
+                <div className="flex -space-x-3">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 border-4 border-white shadow-lg"></div>
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 border-4 border-white shadow-lg"></div>
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-teal-400 to-emerald-500 border-4 border-white shadow-lg"></div>
+                  <div className="w-12 h-12 rounded-full bg-slate-100 border-4 border-white shadow-lg flex items-center justify-center text-emerald-600 font-black text-xs">
+                    500+
                   </div>
-                  <p> Trusted by 500+ sustainability leaders </p>
+                </div>
+                <div>
+                  <p className="text-sm font-black text-slate-900">500+ Organizations</p>
+                  <p className="text-xs text-slate-500">{t.hero.trusted}</p>
                 </div>
               </div>
-              {/* Hero Image / Dashboard Preview */}
-              <div className="lg:w-1/2 relative">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-white">
-                  {/* Mockup Header */}
-                  <div className="bg-slate-50 border-b border-slate-100 px-4 py-3 flex items-center gap-2">
-                    <div className="flex gap-1.5">
-                      <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                      <div className="w-3 h-3 rounded-full bg-amber-400"></div>
-                      <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
-                    </div>
-                    <Badge className="ml-4 px-3 py-1 bg-white rounded-md text-xs text-slate-400 border border-slate-100 w-64"> ecotrack.io/dashboard </Badge>
-                  </div>
-                  {/* Mockup Content */}
-                  <div className="p-6 grid grid-cols-2 gap-6">
-                    {/* Stat Card 1 */}
-                    <div className="col-span-2 bg-emerald-50 rounded-xl p-5 border border-emerald-100">
-                      <div className="flex justify-between items-start mb-4">
-                        <div>
-                          <p className="text-sm text-emerald-600 font-medium"> Total Carbon Offset </p>
-                          <h3 className="text-3xl font-bold text-emerald-900"> 1,240 tCO2e </h3>
+            </div>
+
+            <Card3D className="animate-fade-in-delay">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-3xl blur-3xl opacity-20"></div>
+                
+                <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.12)] bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
+                  <div className="relative h-[500px] sm:h-[600px] lg:h-[650px] overflow-hidden group flex items-start justify-center pt-8">
+                    <Image 
+                      src="/hero.jpg"
+                      alt="Carbon footprint visualization"
+                      className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent pointer-events-none"></div>
+                    
+                    {/* Floating ISO Badge */}
+                    <div className="absolute top-6 right-6 bg-white/98 backdrop-blur-sm px-6 py-4 rounded-xl shadow-lg border border-emerald-200/50">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center">
+                          <Icon className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </Icon>
                         </div>
-                        <Text className="px-2 py-1 bg-emerald-200 text-emerald-800 text-xs rounded-full font-medium"> +12% vs last month </Text>
+                        <div>
+                          <p className="text-xs text-slate-500 font-semibold">Certified</p>
+                          <p className="text-sm font-black text-slate-900">ISO 14064</p>
+                        </div>
                       </div>
-                      <div className="h-2 bg-emerald-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-emerald-500 w-3/4 rounded-full"></div>
+                    </div>
+                    
+                    {/* Bottom Stats Overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 bg-gradient-to-t from-emerald-900/95 via-emerald-900/85 to-transparent">
+                      <div className="text-white space-y-3 sm:space-y-4">
+                        <div>
+                          <p className="text-xs sm:text-sm font-bold mb-1 sm:mb-2 text-emerald-200">Carbon Intelligence Platform</p>
+                          <h3 className="text-xl sm:text-2xl lg:text-3xl font-black leading-tight">Measure, Analyze, and Manage Sustainability Systems</h3>
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+                          <div className="bg-white/20 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-3 border border-white/30">
+                            <p className="text-xs text-emerald-100 mb-1">Accuracy</p>
+                            <p className="text-xl sm:text-2xl font-black">98%</p>
+                          </div>
+                          <div className="bg-white/20 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-3 border border-white/30">
+                            <p className="text-xs text-emerald-100 mb-1">Organizations</p>
+                            <p className="text-xl sm:text-2xl font-black">500+</p>
+                          </div>
+                          <div className="bg-white/20 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-3 border border-white/30">
+                            <p className="text-xs text-emerald-100 mb-1">Framework</p>
+                            <p className="text-base sm:text-lg font-black">ISO 14064-1</p>
+                          </div>
+                          <div className="bg-white/20 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-3 border border-white/30">
+                            <p className="text-xs text-emerald-100 mb-1">Methodology</p>
+                            <p className="text-base sm:text-lg font-black">Standards</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    {/* Stat Card 2 */}
-                    <div className="bg-white rounded-xl p-5 border border-slate-100 shadow-sm">
-                      <p className="text-sm text-slate-500 mb-1"> Energy Usage </p>
-                      <p className="text-2xl font-bold text-slate-800"> 450 MWh </p>
-                      <p className="text-xs text-green-600 mt-2 flex items-center">
-                        <Icon className="w-3 h-3 mr-1" viewBox="0 0 24 24" fill="none"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></Icon>
-                         -5% reduction 
-                      </p>
-                    </div>
-                    {/* Stat Card 3 */}
-                    <div className="bg-white rounded-xl p-5 border border-slate-100 shadow-sm">
-                      <p className="text-sm text-slate-500 mb-1"> Scope 3 Emissions </p>
-                      <p className="text-2xl font-bold text-slate-800"> 890 tCO2e </p>
-                      <p className="text-xs text-amber-600 mt-2 flex items-center">
-                        <Icon className="w-3 h-3 mr-1" viewBox="0 0 24 24" fill="none"><path d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></Icon>
-                         Action needed 
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                {/* Floating Badge */}
-                <div style={{ animationDuration: "3s" }} className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl border border-slate-100 flex items-center gap-3 animate-bounce">
-                  <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
-                    <Icon className="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></Icon>
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-500"> Status </p>
-                    <p className="text-sm font-bold text-slate-800"> Net Zero Compliant </p>
                   </div>
                 </div>
               </div>
-            </div>
+            </Card3D>
           </div>
-        </section>
-        {/* Trust Section */}
-        <section id="trust_section" className="py-12 border-y border-slate-100 bg-white/50">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <p className="text-center text-sm font-medium text-slate-500 mb-8 uppercase tracking-wider"> Trusted by Sustainability Pioneers </p>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-              {/* Partner Logos (Text-based SVGs for Professional Look) */}
-              <Icon className="h-8 w-auto text-slate-800" viewBox="0 0 140 40" fill="currentColor"><Text> CarbonZero </Text></Icon>
-              <Icon className="h-8 w-auto text-slate-800" viewBox="0 0 140 40" fill="currentColor"><Text> GreenGrid </Text></Icon>
-              <Icon className="h-8 w-auto text-slate-800" viewBox="0 0 140 40" fill="currentColor"><Text> EcoSphere </Text></Icon>
-              <Icon className="h-8 w-auto text-slate-800" viewBox="0 0 150 40" fill="currentColor"><Text> SustainFlow </Text></Icon>
-              <Icon className="h-8 w-auto text-slate-800" viewBox="0 0 140 40" fill="currentColor"><Text> NetPositive </Text></Icon>
-            </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-20 bg-white border-b border-slate-200">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <ScrollReveal>
+              <div className="space-y-2">
+                <p className="text-5xl font-black bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">500+</p>
+                <p className="text-sm text-slate-600 font-semibold">Organizations</p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={100}>
+              <div className="space-y-2">
+                <p className="text-5xl font-black bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">1.2M</p>
+                <p className="text-sm text-slate-600 font-semibold">tCO2e Tracked</p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={200}>
+              <div className="space-y-2">
+                <p className="text-5xl font-black bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">98%</p>
+                <p className="text-sm text-slate-600 font-semibold">Accuracy</p>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={300}>
+              <div className="space-y-2">
+                <p className="text-5xl font-black bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">24/7</p>
+                <p className="text-sm text-slate-600 font-semibold">Support</p>
+              </div>
+            </ScrollReveal>
           </div>
-        </section>
-        {/* Complete Carbon Intelligence */}
-        <section id="complete_carbon_intelligence" className="py-24 bg-white relative overflow-hidden">
-          <div className="container mx-auto px-4 max-w-7xl">
-            <div className="text-center max-w-3xl mx-auto mb-20">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4"> Complete Carbon Intelligence </h2>
-              <p className="text-lg text-slate-600">
-                 From automated data collection to audit-ready reports, EcoTrack provides the tools you need to manage your environmental impact. 
+        </div>
+      </section>
+
+      {/* Methodology Section */}
+      <section className="py-24 bg-white border-b border-slate-200">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <ScrollReveal>
+            <div className="text-center max-w-4xl mx-auto">
+              <Badge className="inline-flex px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-sm font-bold mb-6">
+                Structured Methodology
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
+                Methodology and Calculation Framework
+              </h2>
+              <p className="text-xl text-slate-600 leading-[1.6]">
+                Carbonless Network is built on structured methodologies aligned with international standards such as ISO 14064 and ESG frameworks. Our platform enables transparent carbon accounting, sustainability performance evaluation, and standards-aligned institutional reporting.
               </p>
             </div>
-            {/* Feature 1: Tracking */}
-            <div className="flex flex-col md:flex-row items-center gap-16 mb-24">
-              <div className="md:w-1/2 order-2 md:order-1">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-100 bg-slate-50 p-2">
-                  <Image className="rounded-xl w-full h-auto" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Data Dashboard" />
-                </div>
-              </div>
-              <div className="md:w-1/2 order-1 md:order-2 space-y-6">
-                <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600">
-                  <Icon className="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></Icon>
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900"> Real-time Carbon Tracking </h3>
-                <p className="text-slate-600 leading-relaxed">
-                   Connect your utility bills, travel data, and supply chain records directly to EcoTrack. Our API integrations ensure your carbon data is always up-to-date and accurate, eliminating manual entry errors. 
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3 text-slate-700">
-                    <Icon className="w-5 h-5 text-emerald-500" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></Icon>
-                     Automated data ingestion 
-                  </li>
-                  <li className="flex items-center gap-3 text-slate-700">
-                    <Icon className="w-5 h-5 text-emerald-500" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></Icon>
-                     Scope 1, 2, and 3 coverage 
-                  </li>
-                  <li className="flex items-center gap-3 text-slate-700">
-                    <Icon className="w-5 h-5 text-emerald-500" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></Icon>
-                     Anomaly detection alerts 
-                  </li>
-                </ul>
-              </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+
+      {/* Features Section */}
+      <section className="py-32 bg-gradient-to-br from-slate-50 via-emerald-50/30 to-teal-50/30">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <ScrollReveal>
+            <div className="text-center max-w-3xl mx-auto mb-20">
+              <Badge className="inline-flex px-4 py-2 rounded-full bg-white border border-emerald-200 text-emerald-700 text-sm font-bold mb-6 shadow-sm">
+                {t.whatWeDo.title}
+              </Badge>
+              <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6">
+                Comprehensive <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Solutions</span>
+              </h2>
+              <p className="text-xl text-slate-600 leading-relaxed">
+                {t.whatWeDo.text}
+              </p>
             </div>
-            {/* Feature 2: Reporting */}
-            <div className="flex flex-col md:flex-row items-center gap-16">
-              <div className="md:w-1/2 space-y-6">
-                <div className="w-12 h-12 bg-teal-100 rounded-xl flex items-center justify-center text-teal-600">
-                  <Icon className="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></Icon>
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900"> Audit-Ready Impact Reports </h3>
-                <p className="text-slate-600 leading-relaxed">
-                   Generate compliant sustainability reports with a single click. Whether it's for stakeholders, investors, or regulatory bodies, EcoTrack ensures your data meets global standards like GHG Protocol and TCFD. 
-                </p>
-                <Link variant="inline" className="text-emerald-600 font-semibold hover:text-emerald-700 inline-flex items-center gap-1" href="services.html"> Explore Reporting Features 
-                <Icon className="w-4 h-4" viewBox="0 0 24 24" fill="none"><path d="M17 8l4 4m0 0l-4 4m4-4H3" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></Icon></Link>
-              </div>
-              <div className="md:w-1/2">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-100 bg-slate-50 p-2">
-                  <Image className="rounded-xl w-full h-auto" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Reporting Interface" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* Certified For Excellence */}
-        <section id="certified_for_excellence" className="py-20 bg-emerald-900 text-white overflow-hidden relative">
-          <div className="absolute inset-0 opacity-10">
-            <Icon className="w-full h-full" viewBox="0 0 100 100"><path d="M0 100 C 20 0 50 0 100 100 Z" fill="currentColor"></path></Icon>
-          </div>
-          <div className="container mx-auto px-4 max-w-7xl relative z-10 text-center">
-            <h2 className="text-3xl font-bold mb-12"> Certified for Excellence </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center opacity-80">
-              {/* Placeholder Certification Badges */}
-              <div className="p-6 border border-emerald-700 rounded-xl bg-emerald-800/30 backdrop-blur-sm w-full">
-                <p className="font-bold text-xl"> ISO 14001 </p>
-                <p className="text-xs text-emerald-300 mt-1"> Environmental Management </p>
-              </div>
-              <div className="p-6 border border-emerald-700 rounded-xl bg-emerald-800/30 backdrop-blur-sm w-full">
-                <p className="font-bold text-xl"> GHG Protocol </p>
-                <p className="text-xs text-emerald-300 mt-1"> Standard Compliant </p>
-              </div>
-              <div className="p-6 border border-emerald-700 rounded-xl bg-emerald-800/30 backdrop-blur-sm w-full">
-                <p className="font-bold text-xl"> B Corp </p>
-                <p className="text-xs text-emerald-300 mt-1"> Pending Certification </p>
-              </div>
-              <div className="p-6 border border-emerald-700 rounded-xl bg-emerald-800/30 backdrop-blur-sm w-full">
-                <p className="font-bold text-xl"> SOC 2 </p>
-                <p className="text-xs text-emerald-300 mt-1"> Type II Secure </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* Ready To Make A Measurable Impact */}
-        <section id="ready_to_make_a_measurable_impact" className="py-24 bg-slate-50">
-          <div className="container mx-auto px-4 max-w-4xl text-center">
-            <h2 className="text-4xl font-bold text-slate-900 mb-6"> Ready to make a measurable impact? </h2>
-            <p className="text-xl text-slate-600 mb-10">
-               Join hundreds of forward-thinking companies using EcoTrack to build a sustainable future. 
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link variant="inline" contentKey="cta_27" className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white transition-all duration-200 bg-emerald-600 rounded-full hover:bg-emerald-700 hover:shadow-lg hover:shadow-emerald-200" href="contact.html"> Get Started Now </Link>
-              <Link variant="inline" contentKey="cta_28" className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-slate-700 transition-all duration-200 bg-white border border-slate-200 rounded-full hover:bg-slate-50 hover:border-emerald-200" href="pricing.html"> View Pricing </Link>
-            </div>
-          </div>
-        </section>
-        <footer className="bg-emerald-950 text-emerald-100 py-16 relative overflow-hidden">
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-5">
-            <Icon className="w-full h-full" viewBox="0 0 100 100"><path d="M0 100 C 20 0 50 0 100 100 Z" fill="currentColor"></path></Icon>
-          </div>
-          <div className="container mx-auto px-4 max-w-7xl relative z-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-              {/* Brand Column */}
-              <div className="space-y-6">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center text-white">
-                    <Icon className="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></Icon>
+          </ScrollReveal>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {t.whatWeDo.features.map((feature, index) => (
+              <ScrollReveal key={index} delay={index * 100}>
+                <Card3D>
+                  <div className="group relative h-full bg-white rounded-2xl overflow-hidden border-2 border-slate-200 hover:border-emerald-300 hover:shadow-2xl transition-all">
+                    <div className="relative h-64 overflow-hidden">
+                      <Image 
+                        src={[
+                          "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&q=80",
+                          "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800&q=80",
+                          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+                          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80"
+                        ][index]}
+                        alt={feature}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+                      <div className="absolute bottom-6 left-6">
+                        <div className="w-14 h-14 bg-white/20 backdrop-blur-xl rounded-2xl flex items-center justify-center border border-white/30">
+                          <Icon className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </Icon>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-8">
+                      <h3 className="text-2xl font-black text-slate-900 mb-3">{feature}</h3>
+                      <div className="w-16 h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full"></div>
+                    </div>
                   </div>
-                  <Text variant="bold" className="text-xl font-bold text-white tracking-tight"> EcoTrack </Text>
+                </Card3D>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section className="py-32 bg-white">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <ScrollReveal>
+            <div className="text-center mb-20">
+              <Badge className="inline-flex px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-sm font-bold mb-6">
+                {t.products.title}
+              </Badge>
+              <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6">
+                Our <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Platforms</span>
+              </h2>
+            </div>
+          </ScrollReveal>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <ScrollReveal delay={100}>
+              <Card3D>
+                <div className="group h-full bg-white rounded-3xl overflow-hidden border-2 border-slate-200 hover:border-emerald-300 shadow-xl hover:shadow-2xl transition-all">
+                  <div className="relative h-80 overflow-hidden">
+                    <Image 
+                      src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1000&q=80"
+                      alt="Carbon data"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/90 to-transparent"></div>
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <h3 className="text-3xl font-black text-white mb-2">{t.products.academiaCarbonTitle}</h3>
+                      <p className="text-emerald-200 text-sm font-semibold">ISO 14064-1 & GHG Protocol</p>
+                    </div>
+                  </div>
+                  
+                  <div className="p-8">
+                    <p className="text-slate-600 leading-relaxed mb-6 text-lg">
+                      {t.products.academiaCarbonDesc}
+                    </p>
+                    
+                    <ul className="space-y-3 mb-8">
+                      {t.products.academiaCarbonFeatures.map((feature, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Icon className="w-4 h-4 text-emerald-600" viewBox="0 0 24 24" fill="none">
+                              <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </Icon>
+                          </div>
+                          <span className="text-slate-700 font-semibold">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    <Link className="group/btn inline-flex items-center justify-center w-full px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full shadow-lg shadow-emerald-200 hover:shadow-xl hover:shadow-emerald-300 transition-all hover:scale-105" href="/products">
+                      {t.products.button}
+                      <Icon className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none">
+                        <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </Icon>
+                    </Link>
+                  </div>
                 </div>
-                <p className="text-emerald-200/80 text-sm leading-relaxed">
-                   Empowering businesses to measure, reduce, and report their carbon footprint with precision and transparency. Join the movement towards Net Zero. 
-                </p>
-                <div className="flex gap-4">
-                  <Link contentKey="cta_29" className="w-10 h-10 rounded-full bg-emerald-900/50 flex items-center justify-center hover:bg-emerald-800 transition-colors" href="#"><Text className="sr-only"> Twitter </Text>
-                  <Icon className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></Icon></Link>
-                  <Link contentKey="cta_30" className="w-10 h-10 rounded-full bg-emerald-900/50 flex items-center justify-center hover:bg-emerald-800 transition-colors" href="#"><Text className="sr-only"> LinkedIn </Text>
-                  <Icon className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></Icon></Link>
+              </Card3D>
+            </ScrollReveal>
+
+            <ScrollReveal delay={200}>
+              <Card3D>
+                <div className="group h-full bg-white rounded-3xl overflow-hidden border-2 border-slate-200 hover:border-cyan-300 shadow-xl hover:shadow-2xl transition-all">
+                  <div className="relative h-80 overflow-hidden">
+                    <Image 
+                      src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=1000&q=80"
+                      alt="Sustainability"
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/90 to-transparent"></div>
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <h3 className="text-3xl font-black text-white mb-2">{t.products.sustindexTitle}</h3>
+                      <p className="text-cyan-200 text-sm font-semibold">ESG & KPI-Based Scoring</p>
+                    </div>
+                  </div>
+                  
+                  <div className="p-8">
+                    <p className="text-slate-600 leading-relaxed mb-6 text-lg">
+                      {t.products.sustindexDesc}
+                    </p>
+                    
+                    <ul className="space-y-3 mb-8">
+                      {t.products.sustindexFeatures.map((feature, index) => (
+                        <li key={index} className="flex items-start gap-3">
+                          <div className="w-6 h-6 bg-cyan-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Icon className="w-4 h-4 text-cyan-600" viewBox="0 0 24 24" fill="none">
+                              <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            </Icon>
+                          </div>
+                          <span className="text-slate-700 font-semibold">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    
+                    <Link className="group/btn inline-flex items-center justify-center w-full px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-cyan-600 to-blue-600 rounded-full shadow-lg shadow-cyan-200 hover:shadow-xl hover:shadow-cyan-300 transition-all hover:scale-105" href="/products">
+                      {t.products.button}
+                      <Icon className="w-5 h-5 ml-2 group-hover/btn:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none">
+                        <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </Icon>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-              {/* Product Links */}
-              <div>
-                <h3 className="text-white font-semibold mb-6"> Platform </h3>
-                <ul className="space-y-4 text-sm">
-                  <li>
-                    <Link className="hover:text-emerald-400 transition-colors" href="services.html#tracking"> Carbon Tracking </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-emerald-400 transition-colors" href="services.html#supply-chain"> Supply Chain </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-emerald-400 transition-colors" href="services.html#reporting"> ESG Reporting </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-emerald-400 transition-colors" href="services.html#offsets"> Carbon Offsets </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-emerald-400 transition-colors" href="pricing.html"> Enterprise Pricing </Link>
-                  </li>
-                </ul>
-              </div>
-              {/* Company Links */}
-              <div>
-                <h3 className="text-white font-semibold mb-6"> Company </h3>
-                <ul className="space-y-4 text-sm">
-                  <li>
-                    <Link className="hover:text-emerald-400 transition-colors" href="about.html"> About Us </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-emerald-400 transition-colors" href="about.html#careers"> Careers </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-emerald-400 transition-colors" href="blog.html"> Blog </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-emerald-400 transition-colors" href="contact.html"> Contact </Link>
-                  </li>
-                  <li>
-                    <Link className="hover:text-emerald-400 transition-colors" href="#"> Partners </Link>
-                  </li>
-                </ul>
-              </div>
-              {/* Newsletter */}
-              <div>
-                <h3 className="text-white font-semibold mb-6"> Stay Updated </h3>
-                <p className="text-emerald-200/80 text-sm mb-4">
-                   Get the latest sustainability insights delivered to your inbox. 
-                </p>
-                <form className="space-y-3">
-                  <input placeholder="Enter your email" type="email" className="w-full px-4 py-3 bg-emerald-900/50 border border-emerald-800 rounded-lg focus:outline-none focus:border-emerald-500 text-white placeholder-emerald-400/50 text-sm" />
-                  <Button contentKey="cta_31" className="w-full px-4 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-lg transition-colors text-sm" type="submit"> Subscribe </Button>
-                </form>
+              </Card3D>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-32 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <ScrollReveal>
+            <div className="text-center mb-20">
+              <Badge className="inline-flex px-4 py-2 rounded-full bg-white border border-emerald-200 text-emerald-700 text-sm font-bold mb-6 shadow-sm">
+                {t.howItWorks.title}
+              </Badge>
+              <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6">
+                Simple <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">4-Step Process</span>
+              </h2>
+            </div>
+          </ScrollReveal>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {t.howItWorks.steps.map((step, index) => (
+              <ScrollReveal key={index} delay={index * 100}>
+                <Card3D>
+                  <div className="relative h-full bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-emerald-300 hover:shadow-xl transition-all">
+                    <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center text-white text-2xl font-black shadow-lg shadow-emerald-200">
+                      {index + 1}
+                    </div>
+                    <div className="pt-8">
+                      <h3 className="text-xl font-black text-slate-900 mb-3">{step.title}</h3>
+                      <p className="text-slate-600 leading-relaxed">{step.desc}</p>
+                    </div>
+                  </div>
+                </Card3D>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Standards */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <ScrollReveal>
+            <div className="text-center mb-16">
+              <Badge className="inline-flex px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-sm font-bold mb-6">
+                {t.standards.title}
+              </Badge>
+              <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6">
+                Aligned with <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Global Standards</span>
+              </h2>
+              <p className="text-xl text-slate-600 max-w-3xl mx-auto">{t.standards.text}</p>
+            </div>
+          </ScrollReveal>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            {t.standards.list.map((standard, index) => (
+              <ScrollReveal key={index} delay={index * 50}>
+                <Card3D>
+                  <div className="group bg-gradient-to-br from-white to-slate-50 border-2 border-slate-200 hover:border-emerald-300 rounded-2xl p-8 text-center hover:shadow-xl transition-all">
+                    <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-emerald-200 group-hover:scale-110 transition-transform">
+                      <Icon className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </Icon>
+                    </div>
+                    <p className="text-xl font-black text-slate-900">{standard}</p>
+                  </div>
+                </Card3D>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative py-32 overflow-hidden">
+        <div className="absolute inset-0">
+          <Image 
+            src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=1920&q=80"
+            alt="Nature"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/95 via-teal-600/95 to-cyan-600/95"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 max-w-5xl text-center relative z-10">
+          <ScrollReveal>
+            <div className="bg-white/10 backdrop-blur-2xl border-2 border-white/30 rounded-3xl p-16 shadow-2xl">
+              <h2 className="text-5xl md:text-6xl font-black text-white mb-8 leading-tight">
+                {t.finalCta.title}
+              </h2>
+              
+              <div className="flex flex-col sm:flex-row justify-center gap-6">
+                <Link className="group inline-flex items-center justify-center px-12 py-5 text-xl font-black text-emerald-700 bg-white rounded-full shadow-2xl hover:shadow-white/50 transition-all hover:scale-105" href="/products">
+                  {t.finalCta.button1}
+                  <Icon className="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none">
+                    <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                  </Icon>
+                </Link>
+                
+                <Link className="inline-flex items-center justify-center px-12 py-5 text-xl font-black text-white border-4 border-white/50 rounded-full hover:bg-white/10 hover:border-white transition-all hover:scale-105" href="/contact">
+                  {t.finalCta.button2}
+                </Link>
               </div>
             </div>
-            {/* Bottom Bar */}
-            <div className="pt-8 border-t border-emerald-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-emerald-400/60">
-              <p> © 2024 EcoTrack Technologies Inc. All rights reserved. </p>
-              <div className="flex gap-6">
-                <Link className="hover:text-emerald-400 transition-colors" href="#"> Privacy Policy </Link>
-                <Link className="hover:text-emerald-400 transition-colors" href="#"> Terms of Service </Link>
-                <Link className="hover:text-emerald-400 transition-colors" href="#"> Cookie Settings </Link>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-50 text-slate-600 py-20 border-t border-slate-200">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-200">
+                  <Icon className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none">
+                    <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </Icon>
+                </div>
+                <div>
+                  <Text className="text-lg font-black text-slate-900">Carbonless</Text>
+                  <Text className="text-xs text-emerald-600 font-bold">NETWORK</Text>
+                </div>
               </div>
+              <p className="text-sm leading-relaxed">
+                Digital platforms for carbon accounting and sustainability assessment.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-slate-900 font-black mb-6">Platform</h3>
+              <ul className="space-y-3 text-sm">
+                <li><Link className="hover:text-emerald-600 transition-colors" href="/products">Academia Carbon</Link></li>
+                <li><Link className="hover:text-emerald-600 transition-colors" href="/products">Sustindex</Link></li>
+                <li><Link className="hover:text-emerald-600 transition-colors" href="/methodology">Methodology</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-slate-900 font-black mb-6">Company</h3>
+              <ul className="space-y-3 text-sm">
+                <li><Link className="hover:text-emerald-600 transition-colors" href="/about">About</Link></li>
+                <li><Link className="hover:text-emerald-600 transition-colors" href="/contact">Contact</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-slate-900 font-black mb-6">Contact</h3>
+              <p className="text-sm mb-4">info@carbonless.network</p>
+              <Link className="inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full shadow-lg shadow-emerald-200 hover:shadow-xl hover:shadow-emerald-300 transition-all hover:scale-105" href="/contact">
+                Get Started
+              </Link>
             </div>
           </div>
-        </footer>
-      </>
+          
+          <div className="pt-8 border-t border-slate-200 text-center">
+            <p className="text-sm text-slate-500">© 2026 Carbonless Network. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

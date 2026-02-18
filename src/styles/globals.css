@@ -2,27 +2,220 @@
 @import "tailwindcss";
 
 @layer base {
-  body { font-family: 'Inter', sans-serif; }
+  body { 
+    font-family: 'Inter', sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer utilities {
-  .glass-card { background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.5); }
-  .blob { position: absolute;
-  filter: blur(40px);
-  z-index: -1;
-  opacity: 0.4;
-  animation: float 10s infinite ease-in-out; }
-  @keyframes float {
+  /* Glass Morphism */
+  .glass-card { 
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5); 
+  }
   
-    0%,
-    100% {
+  /* Gradient Text */
+  .gradient-text {
+    background: linear-gradient(135deg, #10b981 0%, #14b8a6 50%, #06b6d4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Animated Gradient Background */
+  .animated-gradient {
+    background: linear-gradient(-45deg, #10b981, #14b8a6, #06b6d4, #0891b2);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+  
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* Blob Animation */
+  .blob { 
+    position: absolute;
+    filter: blur(60px);
+    z-index: -1;
+    opacity: 0.5;
+    animation: blob 10s infinite ease-in-out; 
+  }
+  
+  @keyframes blob {
+    0%, 100% {
       transform: translate(0, 0) scale(1);
     }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+  }
   
+  /* Float Animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  /* Pulse Glow */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+    }
     50% {
-      transform: translate(20px, -20px) scale(1.1);
+      box-shadow: 0 0 40px rgba(16, 185, 129, 0.8);
+    }
+  }
+  
+  /* Hover Lift */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Shine Effect */
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s;
+  }
+  
+  .shine:hover::before {
+    left: 100%;
+  }
+  
+  /* New Animations */
+  @keyframes slow-zoom {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .animate-slow-zoom { 
+    animation: slow-zoom 20s ease-in-out infinite; 
+  }
+  
+  .animate-gradient { 
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+  
+  .animate-fade-in { 
+    animation: fade-in 0.8s ease-out; 
+  }
+  
+  .animate-fade-in-delay { 
+    animation: fade-in 0.8s ease-out 0.2s both; 
+  }
+  
+  .animate-fade-in-delay-2 { 
+    animation: fade-in 0.8s ease-out 0.4s both; 
+  }
+  
+  .animate-fade-in-delay-3 { 
+    animation: fade-in 0.8s ease-out 0.6s both; 
+  }
+  
+  .animate-slide-up { 
+    animation: slide-up 1s ease-out; 
+  }
+  
+  .animate-bounce-slow { 
+    animation: bounce-slow 3s ease-in-out infinite; 
+  }
+  
+  /* Animation Delays */
+  .animation-delay-200 { 
+    animation-delay: 0.2s; 
+  }
+  
+  .animation-delay-400 { 
+    animation-delay: 0.4s; 
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  
+  /* Slide Up */
+  .slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Scale In */
+  .scale-in {
+    animation: scaleIn 0.5s ease-out;
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 }
