@@ -12,7 +12,7 @@ export const translations = {
     hero: {
       badge: 'Carbon and Sustainability Intelligence',
       title: 'Carbon and Sustainability Intelligence Platform',
-      subtitle: 'Carbonless Network provides digital platforms that enable organizations to measure, analyze, and manage their carbon footprint and sustainability performance using structured methodologies aligned with international standards.',
+      subtitle: 'Carbonless Network provides structured digital infrastructure for carbon accounting and sustainability management. Our platform enables organizations to measure emissions, evaluate sustainability performance, and support standards-aligned environmental reporting and institutional sustainability systems.',
       description: 'Our solutions help organizations transform environmental data into actionable insights, enabling transparent reporting, performance evaluation, and informed sustainability decision-making.',
       cta1: 'Explore Products',
       cta2: 'Contact Us',
@@ -90,6 +90,12 @@ export const translations = {
       button1: 'Explore Platforms',
       button2: 'Contact Us',
     },
+    // Methodology Section (Home Page)
+    methodologySection: {
+      badge: 'Structured Methodology',
+      title: 'Methodology and Calculation Framework',
+      text: 'Carbonless Network is built on structured methodologies aligned with international standards such as ISO 14064 and ESG frameworks. Our platform enables transparent carbon accounting, sustainability performance evaluation, and standards-aligned institutional reporting.',
+    },
     // Methodology Page
     methodology: {
       title: 'Methodology and Calculation Framework',
@@ -144,7 +150,7 @@ export const translations = {
     hero: {
       badge: 'Karbon ve Sürdürülebilirlik Zekası',
       title: 'Karbon ve Sürdürülebilirlik Zeka Platformu',
-      subtitle: 'Carbonless Network, kuruluşların karbon ayak izini ve sürdürülebilirlik performansını uluslararası standartlara uygun yapılandırılmış metodolojilerle ölçmesine, analiz etmesine ve yönetmesine olanak sağlayan dijital platformlar sunar.',
+      subtitle: 'Carbonless Network, karbon muhasebesi ve sürdürülebilirlik yönetimi için yapılandırılmış dijital altyapı sağlar. Platformumuz, kuruluşların emisyonları ölçmesine, sürdürülebilirlik performansını değerlendirmesine ve standartlara uygun çevresel raporlama ve kurumsal sürdürülebilirlik sistemlerini desteklemesine olanak tanır.',
       description: 'Çözümlerimiz, çevresel verileri anlamlı içgörülere dönüştürerek şeffaf raporlama, performans değerlendirmesi ve sürdürülebilirlik odaklı karar alma süreçlerini destekler.',
       cta1: 'Ürünleri Keşfet',
       cta2: 'İletişime Geç',
@@ -221,6 +227,12 @@ export const translations = {
       title: 'Karbon ve sürdürülebilirlik performansınızı ölçmeye başlayın.',
       button1: 'Platformları Keşfet',
       button2: 'İletişime Geç',
+    },
+    // Methodology Section (Home Page)
+    methodologySection: {
+      badge: 'Yapılandırılmış Metodoloji',
+      title: 'Metodoloji ve Hesaplama Çerçevesi',
+      text: 'Carbonless Network, ISO 14064 ve ESG çerçeveleri gibi uluslararası standartlara uygun yapılandırılmış metodolojiler üzerine inşa edilmiştir. Platformumuz şeffaf karbon muhasebesi, sürdürülebilirlik performans değerlendirmesi ve standartlara uygun kurumsal raporlama sağlar.',
     },
     // Methodology Page
     methodology: {

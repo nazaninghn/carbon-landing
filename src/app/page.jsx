@@ -116,7 +116,7 @@ export default function Page() {
               </h1>
               
               <p className="text-lg sm:text-xl text-slate-600 leading-[1.6] max-w-xl mx-auto lg:mx-0 animate-fade-in-delay">
-                Carbonless Network provides structured digital infrastructure for carbon accounting and sustainability management. Our platform enables organizations to measure emissions, evaluate sustainability performance, and support standards-aligned environmental reporting and institutional sustainability systems.
+                {t.hero.subtitle}
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 pt-4 animate-fade-in-delay-2 justify-center lg:justify-start">
@@ -249,13 +249,13 @@ export default function Page() {
           <ScrollReveal>
             <div className="text-center max-w-4xl mx-auto">
               <Badge className="inline-flex px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 text-sm font-bold mb-6">
-                Structured Methodology
+                {t.methodologySection.badge}
               </Badge>
               <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6">
-                Methodology and Calculation Framework
+                {t.methodologySection.title}
               </h2>
               <p className="text-xl text-slate-600 leading-[1.6]">
-                Carbonless Network is built on structured methodologies aligned with international standards such as ISO 14064 and ESG frameworks. Our platform enables transparent carbon accounting, sustainability performance evaluation, and standards-aligned institutional reporting.
+                {t.methodologySection.text}
               </p>
             </div>
           </ScrollReveal>
