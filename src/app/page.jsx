@@ -108,11 +108,23 @@ export default function Page() {
               </Badge>
               
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight animate-slide-up mb-6 lg:mb-8">
-                <span className="text-slate-900">Carbon &</span>
-                <br />
-                <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">Sustainability</span>
-                <br />
-                <span className="text-slate-900">Intelligence</span>
+                {t.hero.title.includes('Carbon') ? (
+                  <>
+                    <span className="text-slate-900">Carbon &</span>
+                    <br />
+                    <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">Sustainability</span>
+                    <br />
+                    <span className="text-slate-900">Intelligence</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-slate-900">Karbon ve</span>
+                    <br />
+                    <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">Sürdürülebilirlik</span>
+                    <br />
+                    <span className="text-slate-900">Zeka Platformu</span>
+                  </>
+                )}
               </h1>
               
               <p className="text-lg sm:text-xl text-slate-600 leading-[1.6] max-w-xl mx-auto lg:mx-0 animate-fade-in-delay">
@@ -534,10 +546,12 @@ export default function Page() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
             <div className="space-y-6">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-200">
-                  <Icon className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none">
-                    <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </Icon>
+                <div className="relative w-12 h-12 flex items-center justify-center">
+                  <Image 
+                    src="/logo.png"
+                    alt="Carbonless Network Logo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div>
                   <Text className="text-lg font-black text-slate-900">Carbonless</Text>
@@ -545,38 +559,38 @@ export default function Page() {
                 </div>
               </div>
               <p className="text-sm leading-relaxed">
-                Digital platforms for carbon accounting and sustainability assessment.
+                {t.footer.description}
               </p>
             </div>
             
             <div>
-              <h3 className="text-slate-900 font-black mb-6">Platform</h3>
+              <h3 className="text-slate-900 font-black mb-6">{t.footer.platformTitle}</h3>
               <ul className="space-y-3 text-sm">
                 <li><Link className="hover:text-emerald-600 transition-colors" href="/products">Academia Carbon</Link></li>
                 <li><Link className="hover:text-emerald-600 transition-colors" href="/products">Sustindex</Link></li>
-                <li><Link className="hover:text-emerald-600 transition-colors" href="/methodology">Methodology</Link></li>
+                <li><Link className="hover:text-emerald-600 transition-colors" href="/methodology">{t.nav.methodology}</Link></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="text-slate-900 font-black mb-6">Company</h3>
+              <h3 className="text-slate-900 font-black mb-6">{t.footer.companyTitle}</h3>
               <ul className="space-y-3 text-sm">
-                <li><Link className="hover:text-emerald-600 transition-colors" href="/about">About</Link></li>
-                <li><Link className="hover:text-emerald-600 transition-colors" href="/contact">Contact</Link></li>
+                <li><Link className="hover:text-emerald-600 transition-colors" href="/about">{t.nav.about}</Link></li>
+                <li><Link className="hover:text-emerald-600 transition-colors" href="/contact">{t.nav.contact}</Link></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="text-slate-900 font-black mb-6">Contact</h3>
+              <h3 className="text-slate-900 font-black mb-6">{t.footer.contactTitle}</h3>
               <p className="text-sm mb-4">info@carbonless.network</p>
               <Link className="inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full shadow-lg shadow-emerald-200 hover:shadow-xl hover:shadow-emerald-300 transition-all hover:scale-105" href="/contact">
-                Get Started
+                {t.footer.getStarted}
               </Link>
             </div>
           </div>
           
           <div className="pt-8 border-t border-slate-200 text-center">
-            <p className="text-sm text-slate-500">© 2026 Carbonless Network. All rights reserved.</p>
+            <p className="text-sm text-slate-500">{t.footer.copyright}</p>
           </div>
         </div>
       </footer>

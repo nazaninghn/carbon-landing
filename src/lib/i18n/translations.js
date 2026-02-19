@@ -140,6 +140,15 @@ export const translations = {
       message: 'Message',
       send: 'Send Message',
     },
+    // Footer
+    footer: {
+      description: 'Digital platforms for carbon accounting and sustainability assessment.',
+      platformTitle: 'Platform',
+      companyTitle: 'Company',
+      contactTitle: 'Contact',
+      getStarted: 'Get Started',
+      copyright: '© 2026 Carbonless Network. All rights reserved.',
+    },
   },
   tr: {
     // Navigation
@@ -281,6 +290,15 @@ export const translations = {
       name: 'İsim',
       message: 'Mesaj',
       send: 'Mesaj Gönder',
+    },
+    // Footer
+    footer: {
+      description: 'Karbon muhasebesi ve sürdürülebilirlik değerlendirmesi için dijital platformlar.',
+      platformTitle: 'Platform',
+      companyTitle: 'Şirket',
+      contactTitle: 'İletişim',
+      getStarted: 'Başlayın',
+      copyright: '© 2026 Carbonless Network. Tüm hakları saklıdır.',
     },
   },
 };
