@@ -21,6 +21,7 @@ export const translations = {
     // What We Do Section
     whatWeDo: {
       title: 'What We Do',
+      sectionTitle: 'Comprehensive Solutions',
       text: 'Carbonless Network develops digital infrastructure for carbon accounting and sustainability assessment. Our platforms enable organizations to systematically calculate greenhouse gas emissions, evaluate sustainability performance, and generate structured environmental reports.',
       text2: 'We focus on making environmental performance measurable, transparent, and manageable through reliable methodologies and scalable digital tools.',
       features: [
@@ -33,6 +34,7 @@ export const translations = {
     // Products Section
     products: {
       title: 'Our Platforms',
+      sectionTitle: 'Our Platforms',
       academiaCarbonTitle: 'Academia Carbon',
       academiaCarbonDesc: 'Academia Carbon is a carbon accounting platform designed to help organizations measure and manage greenhouse gas emissions in accordance with internationally recognized standards such as ISO 14064-1 and the GHG Protocol.',
       academiaCarbonFeatures: [
@@ -54,6 +56,7 @@ export const translations = {
     // How It Works Section
     howItWorks: {
       title: 'How It Works',
+      sectionTitle: 'Simple 4-Step Process',
       steps: [
         {
           title: 'Data Collection',
@@ -76,6 +79,7 @@ export const translations = {
     // Standards Section
     standards: {
       title: 'Standards and Methodology',
+      sectionTitle: 'Aligned with Global Standards',
       text: 'Our platforms are aligned with internationally recognized standards and frameworks to ensure accuracy, transparency, and reliability.',
       list: [
         'ISO 14064-1',
@@ -159,6 +163,7 @@ export const translations = {
     // What We Do Section
     whatWeDo: {
       title: 'Ne Yapıyoruz',
+      sectionTitle: 'Kapsamlı Çözümler',
       text: 'Carbonless Network, karbon muhasebesi ve sürdürülebilirlik değerlendirmesi için dijital altyapı geliştirir. Platformlarımız, kuruluşların sera gazı emisyonlarını sistematik olarak hesaplamasını, sürdürülebilirlik performansını değerlendirmesini ve yapılandırılmış çevresel raporlar oluşturmasını sağlar.',
       text2: 'Amacımız, çevresel performansı güvenilir metodolojiler ve ölçeklenebilir dijital araçlarla ölçülebilir, şeffaf ve yönetilebilir hale getirmektir.',
       features: [
@@ -171,6 +176,7 @@ export const translations = {
     // Products Section
     products: {
       title: 'Platformlarımız',
+      sectionTitle: 'Platformlarımız',
       academiaCarbonTitle: 'Academia Carbon',
       academiaCarbonDesc: 'Academia Carbon, ISO 14064-1 ve GHG Protocol gibi uluslararası standartlara uygun olarak sera gazı emisyonlarını ölçmek ve yönetmek için geliştirilmiş bir karbon muhasebesi platformudur.',
       academiaCarbonFeatures: [
@@ -192,6 +198,7 @@ export const translations = {
     // How It Works Section
     howItWorks: {
       title: 'Nasıl Çalışır',
+      sectionTitle: 'Basit 4 Adımlı Süreç',
       steps: [
         {
           title: 'Veri Toplama',
@@ -214,6 +221,7 @@ export const translations = {
     // Standards Section
     standards: {
       title: 'Standartlar ve Metodoloji',
+      sectionTitle: 'Küresel Standartlarla Uyumlu',
       text: 'Platformlarımız doğruluk, şeffaflık ve güvenilirlik sağlamak amacıyla uluslararası standartlar ve çerçeveler ile uyumludur.',
       list: [
         'ISO 14064-1',

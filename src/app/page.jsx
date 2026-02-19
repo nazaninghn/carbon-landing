@@ -272,7 +272,7 @@ export default function Page() {
                 {t.whatWeDo.title}
               </Badge>
               <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6">
-                Comprehensive <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Solutions</span>
+                {t.whatWeDo.sectionTitle}
               </h2>
               <p className="text-xl text-slate-600 leading-relaxed">
                 {t.whatWeDo.text}
@@ -326,7 +326,7 @@ export default function Page() {
                 {t.products.title}
               </Badge>
               <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6">
-                Our <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Platforms</span>
+                {t.products.sectionTitle}
               </h2>
             </div>
           </ScrollReveal>
@@ -434,7 +434,7 @@ export default function Page() {
                 {t.howItWorks.title}
               </Badge>
               <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6">
-                Simple <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">4-Step Process</span>
+                {t.howItWorks.sectionTitle}
               </h2>
             </div>
           </ScrollReveal>
@@ -468,7 +468,7 @@ export default function Page() {
                 {t.standards.title}
               </Badge>
               <h2 className="text-5xl md:text-6xl font-black text-slate-900 mb-6">
-                Aligned with <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Global Standards</span>
+                {t.standards.sectionTitle}
               </h2>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto">{t.standards.text}</p>
             </div>
