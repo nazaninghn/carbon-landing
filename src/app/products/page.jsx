@@ -71,7 +71,7 @@ export default function ProductsPage() {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Academia Carbon */}
+            {/* Carbonless */}
             <div className="bg-gradient-to-br from-emerald-50 to-white rounded-2xl p-8 border border-emerald-200 shadow-xl hover:shadow-2xl transition-all">
               <div className="w-20 h-20 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-600 mb-6">
                 <Icon className="w-10 h-10" viewBox="0 0 24 24" fill="none">

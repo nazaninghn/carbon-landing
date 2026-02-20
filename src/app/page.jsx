@@ -551,7 +551,7 @@ export default function Page() {
             <div>
               <h3 className="text-slate-900 font-black mb-6">{t.footer.platformTitle}</h3>
               <ul className="space-y-3 text-sm">
-                <li><Link className="hover:text-emerald-600 transition-colors" href="/products">Academia Carbon</Link></li>
+                <li><Link className="hover:text-emerald-600 transition-colors" href="/products">Carbonless</Link></li>
                 <li><Link className="hover:text-emerald-600 transition-colors" href="/products">Sustindex</Link></li>
                 <li><Link className="hover:text-emerald-600 transition-colors" href="/methodology">{t.nav.methodology}</Link></li>
               </ul>

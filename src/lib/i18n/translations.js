@@ -35,8 +35,8 @@ export const translations = {
     products: {
       title: 'Our Platforms',
       sectionTitle: 'Our Platforms',
-      academiaCarbonTitle: 'Academia Carbon',
-      academiaCarbonDesc: 'Academia Carbon is a carbon accounting platform designed to help organizations measure and manage greenhouse gas emissions in accordance with internationally recognized standards such as ISO 14064-1 and the GHG Protocol.',
+      academiaCarbonTitle: 'Carbonless',
+      academiaCarbonDesc: 'Carbonless is a carbon accounting platform designed to help organizations measure and manage greenhouse gas emissions in accordance with internationally recognized standards such as ISO 14064-1 and the GHG Protocol.',
       academiaCarbonFeatures: [
         'Scope 1, Scope 2, and Scope 3 emission calculation',
         'Emission factor integration',
@@ -193,8 +193,8 @@ export const translations = {
     products: {
       title: 'Platformlarımız',
       sectionTitle: 'Platformlarımız',
-      academiaCarbonTitle: 'Academia Carbon',
-      academiaCarbonDesc: 'Academia Carbon, ISO 14064-1 ve GHG Protocol gibi uluslararası standartlara uygun olarak sera gazı emisyonlarını ölçmek ve yönetmek için geliştirilmiş bir karbon muhasebesi platformudur.',
+      academiaCarbonTitle: 'Carbonless',
+      academiaCarbonDesc: 'Carbonless, ISO 14064-1 ve GHG Protocol gibi uluslararası standartlara uygun olarak sera gazı emisyonlarını ölçmek ve yönetmek için geliştirilmiş bir karbon muhasebesi platformudur.',
       academiaCarbonFeatures: [
         'Scope 1, Scope 2 ve Scope 3 emisyon hesaplama',
         'Emisyon faktörü entegrasyonu',
