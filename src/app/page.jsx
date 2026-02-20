@@ -183,7 +183,7 @@ export default function Page() {
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                           <div className="bg-white/20 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-3 border border-white/30">
                             <p className="text-xs text-emerald-100 mb-1">Accuracy</p>
-                            <p className="text-xl sm:text-2xl font-black">98%</p>
+                            <p className="text-xl sm:text-2xl font-black">92%</p>
                           </div>
                           <div className="bg-white/20 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-3 border border-white/30">
                             <p className="text-xs text-emerald-100 mb-1">Organizations</p>
@@ -226,7 +226,7 @@ export default function Page() {
             </ScrollReveal>
             <ScrollReveal delay={200}>
               <div className="space-y-2">
-                <p className="text-5xl font-black bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">98%</p>
+                <p className="text-5xl font-black bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">92%</p>
                 <p className="text-sm text-slate-600 font-semibold">Accuracy</p>
               </div>
             </ScrollReveal>
