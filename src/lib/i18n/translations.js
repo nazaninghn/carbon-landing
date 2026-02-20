@@ -130,6 +130,13 @@ export const translations = {
       title: 'About Carbonless Network',
       text1: 'Carbonless Network is a technology initiative focused on carbon accounting and sustainability intelligence.',
       text2: 'Our mission is to help organizations measure and improve environmental performance using reliable digital tools.',
+      parentCompany: {
+        badge: 'Parent Company',
+        title: 'ACADEMIA',
+        description: 'Carbonless Network is a subsidiary of Academia Consulting, a leading consulting firm based in Istanbul, Turkey. Academia Consulting specializes in sustainability consulting, carbon management, and environmental advisory services.',
+        location: 'Bilişim Vadisi - İstinye Üniversitesi, Ayazağa Mah. Kemerburgaz Cad. Vadi İstanbul Park, 7A Blok No:7 B İç Kapı No:4, Sarıyer / İstanbul',
+        website: 'Visit Academia Consulting',
+      },
     },
     // Contact Page
     contact: {
@@ -281,6 +288,13 @@ export const translations = {
       title: 'Carbonless Network Hakkında',
       text1: 'Carbonless Network, karbon muhasebesi ve sürdürülebilirlik analizi alanında faaliyet gösteren bir teknoloji girişimidir.',
       text2: 'Misyonumuz, kuruluşların çevresel performansını ölçmesine ve geliştirmesine yardımcı olmaktır.',
+      parentCompany: {
+        badge: 'Ana Şirket',
+        title: 'ACADEMIA',
+        description: 'Carbonless Network, İstanbul merkezli önde gelen bir danışmanlık firması olan Academia Danışmanlık\'ın bir yan kuruluşudur. Academia Danışmanlık, sürdürülebilirlik danışmanlığı, karbon yönetimi ve çevresel danışmanlık hizmetlerinde uzmanlaşmıştır.',
+        location: 'Bilişim Vadisi - İstinye Üniversitesi, Ayazağa Mah. Kemerburgaz Cad. Vadi İstanbul Park, 7A Blok No:7 B İç Kapı No:4, Sarıyer / İstanbul',
+        website: 'Academia Danışmanlık\'ı Ziyaret Edin',
+      },
     },
     // Contact Page
     contact: {

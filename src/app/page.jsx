@@ -173,21 +173,6 @@ export default function Page() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent pointer-events-none"></div>
                     
-                    {/* Floating ISO Badge */}
-                    <div className="absolute top-6 right-6 bg-white/98 backdrop-blur-sm px-6 py-4 rounded-xl shadow-lg border border-emerald-200/50">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl flex items-center justify-center">
-                          <Icon className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          </Icon>
-                        </div>
-                        <div>
-                          <p className="text-xs text-slate-500 font-semibold">Certified</p>
-                          <p className="text-sm font-black text-slate-900">ISO 14064</p>
-                        </div>
-                      </div>
-                    </div>
-                    
                     {/* Bottom Stats Overlay */}
                     <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 lg:p-8 bg-gradient-to-t from-emerald-900/95 via-emerald-900/85 to-transparent">
                       <div className="text-white space-y-3 sm:space-y-4">

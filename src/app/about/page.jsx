@@ -101,6 +101,67 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Parent Company Section */}
+      <section className="py-24 bg-gradient-to-br from-slate-50 to-emerald-50/30">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="text-center mb-12">
+            <Badge className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-800 text-sm font-medium mb-4">
+              {t.about.parentCompany.badge}
+            </Badge>
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">{t.about.parentCompany.title}</h2>
+          </div>
+          
+          <div className="bg-white rounded-2xl p-8 md:p-12 border border-slate-200 shadow-lg">
+            <div className="flex items-start gap-6 mb-8">
+              <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <Icon className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none">
+                  <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </Icon>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold text-slate-900 mb-4">Academia Danışmanlık</h3>
+                <p className="text-lg text-slate-600 leading-relaxed mb-6">
+                  {t.about.parentCompany.description}
+                </p>
+              </div>
+            </div>
+            
+            <div className="border-t border-slate-200 pt-6 space-y-4">
+              <div className="flex items-start gap-3">
+                <Icon className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-1" viewBox="0 0 24 24" fill="none">
+                  <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </Icon>
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  {t.about.parentCompany.location}
+                </p>
+              </div>
+              
+              <div className="flex items-center gap-3">
+                <Icon className="w-5 h-5 text-emerald-600 flex-shrink-0" viewBox="0 0 24 24" fill="none">
+                  <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </Icon>
+                <p className="text-sm text-slate-600">Tel: 212-613 58 80</p>
+              </div>
+              
+              <div className="pt-4">
+                <Link 
+                  className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full hover:shadow-lg hover:shadow-emerald-200 transition-all hover:scale-105"
+                  href="https://www.academiadanismanlik.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t.about.parentCompany.website}
+                  <Icon className="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                    <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </Icon>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Values */}
       <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4 max-w-7xl">

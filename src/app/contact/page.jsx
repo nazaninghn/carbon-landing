@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { Badge } from '@/components/Badge';
 import { Button } from '@/components/Button';
 import { Icon } from '@/components/Icon';
@@ -12,6 +13,36 @@ import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 
 export default function ContactPage() {
   const { t } = useLanguage();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const formData = new FormData(e.target);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus('success');
+        e.target.reset();
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="bg-slate-50 text-slate-900 pt-20">
@@ -70,24 +101,79 @@ export default function ContactPage() {
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 max-w-2xl">
           <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-xl">
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Web3Forms Access Key */}
+              <input type="hidden" name="access_key" value="406a5beb-159f-4fa6-abd6-ebf7311f7fcd" />
+              
+              {/* Optional: Redirect after submission */}
+              <input type="hidden" name="redirect" value="false" />
+              
+              {/* Optional: Custom subject */}
+              <input type="hidden" name="subject" value="New Contact Form Submission from Carbonless Network" />
+              
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">{t.contact.name}</label>
-                <Input type="text" placeholder={t.contact.name} className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+                <Input 
+                  type="text" 
+                  name="name"
+                  placeholder={t.contact.name} 
+                  className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500" 
+                  required
+                />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">{t.contact.email}</label>
-                <Input type="email" placeholder="info@carbonless.network" className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+                <Input 
+                  type="email" 
+                  name="email"
+                  placeholder="info@carbonless.network" 
+                  className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500" 
+                  required
+                />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">{t.contact.message}</label>
-                <textarea rows="6" placeholder={t.contact.message} className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
+                <textarea 
+                  name="message"
+                  rows="6" 
+                  placeholder={t.contact.message} 
+                  className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                  required
+                ></textarea>
               </div>
               
-              <Button type="submit" className="w-full px-8 py-4 text-base font-semibold text-white transition-all duration-200 bg-emerald-600 rounded-full hover:bg-emerald-700 hover:shadow-lg">
-                {t.contact.send}
+              {/* Success Message */}
+              {submitStatus === 'success' && (
+                <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
+                  <div className="flex items-center gap-2 text-emerald-800">
+                    <Icon className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </Icon>
+                    <span className="font-semibold">Message sent successfully!</span>
+                  </div>
+                </div>
+              )}
+              
+              {/* Error Message */}
+              {submitStatus === 'error' && (
+                <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <div className="flex items-center gap-2 text-red-800">
+                    <Icon className="w-5 h-5" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </Icon>
+                    <span className="font-semibold">Something went wrong. Please try again.</span>
+                  </div>
+                </div>
+              )}
+              
+              <Button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="w-full px-8 py-4 text-base font-semibold text-white transition-all duration-200 bg-emerald-600 rounded-full hover:bg-emerald-700 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'Sending...' : t.contact.send}
               </Button>
             </form>
             
