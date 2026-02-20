@@ -182,20 +182,20 @@ export default function Page() {
                         </div>
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                           <div className="bg-white/20 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-3 border border-white/30">
-                            <p className="text-xs text-emerald-100 mb-1">Accuracy</p>
                             <p className="text-xl sm:text-2xl font-black">92%</p>
+                            <p className="text-xs text-emerald-100">Accuracy</p>
                           </div>
                           <div className="bg-white/20 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-3 border border-white/30">
-                            <p className="text-xs text-emerald-100 mb-1">Organizations</p>
                             <p className="text-xl sm:text-2xl font-black">500+</p>
+                            <p className="text-xs text-emerald-100">Organizations</p>
                           </div>
                           <div className="bg-white/20 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-3 border border-white/30">
-                            <p className="text-xs text-emerald-100 mb-1">Framework</p>
-                            <p className="text-base sm:text-lg font-black">ISO 14064-1</p>
+                            <p className="text-base sm:text-lg font-black">ISO 14064</p>
+                            <p className="text-xs text-emerald-100">GHG Protocol</p>
                           </div>
                           <div className="bg-white/20 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-3 border border-white/30">
-                            <p className="text-xs text-emerald-100 mb-1">Methodology</p>
-                            <p className="text-base sm:text-lg font-black">Standards</p>
+                            <p className="text-base sm:text-lg font-black">Real-time</p>
+                            <p className="text-xs text-emerald-100">Monitoring</p>
                           </div>
                         </div>
                       </div>
@@ -204,38 +204,6 @@ export default function Page() {
                 </div>
               </div>
             </Card3D>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-20 bg-white border-b border-slate-200">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <ScrollReveal>
-              <div className="space-y-2">
-                <p className="text-5xl font-black bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">500+</p>
-                <p className="text-sm text-slate-600 font-semibold">Organizations</p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={100}>
-              <div className="space-y-2">
-                <p className="text-5xl font-black bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">1.2M</p>
-                <p className="text-sm text-slate-600 font-semibold">tCO2e Tracked</p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={200}>
-              <div className="space-y-2">
-                <p className="text-5xl font-black bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">92%</p>
-                <p className="text-sm text-slate-600 font-semibold">Accuracy</p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={300}>
-              <div className="space-y-2">
-                <p className="text-5xl font-black bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">24/7</p>
-                <p className="text-sm text-slate-600 font-semibold">Support</p>
-              </div>
-            </ScrollReveal>
           </div>
         </div>
       </section>

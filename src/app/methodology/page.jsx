@@ -90,16 +90,6 @@ export default function MethodologyPage() {
               </div>
             ))}
           </div>
-
-          {/* Formula Highlight */}
-          <div className="mt-16 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 border border-emerald-200">
-            <div className="text-center">
-              <p className="text-sm font-semibold text-emerald-600 mb-4 uppercase tracking-wider">Calculation Formula</p>
-              <p className="text-2xl md:text-3xl font-bold text-slate-900">
-                Activity Data × Emission Factor = Emissions
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 

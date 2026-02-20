@@ -12,9 +12,9 @@ export const translations = {
     hero: {
       badge: 'Carbon and Sustainability Intelligence',
       title: 'Carbon and Sustainability Intelligence Platform',
-      subtitle: 'Carbonless Network provides structured digital infrastructure for carbon accounting and sustainability management. Our platform enables organizations to measure emissions, evaluate sustainability performance, and support standards-aligned environmental reporting and institutional sustainability systems.',
+      subtitle: 'Measure, track, and reduce your carbon emissions with enterprise-grade sustainability infrastructure aligned with global standards.',
       description: 'Our solutions help organizations transform environmental data into actionable insights, enabling transparent reporting, performance evaluation, and informed sustainability decision-making.',
-      cta1: 'Explore Products',
+      cta1: 'Explore Platforms',
       cta2: 'Contact Us',
       trusted: 'Trusted by sustainability leaders worldwide',
     },
@@ -56,7 +56,7 @@ export const translations = {
     // How It Works Section
     howItWorks: {
       title: 'How It Works',
-      sectionTitle: 'Simple 4-Step Process',
+      sectionTitle: 'Our Workflow',
       steps: [
         {
           title: 'Data Collection',
@@ -170,9 +170,9 @@ export const translations = {
     hero: {
       badge: 'Karbon ve Sürdürülebilirlik Zekası',
       title: 'Karbon ve Sürdürülebilirlik Zeka Platformu',
-      subtitle: 'Carbonless Network, karbon muhasebesi ve sürdürülebilirlik yönetimi için yapılandırılmış dijital altyapı sağlar. Platformumuz, kuruluşların emisyonları ölçmesine, sürdürülebilirlik performansını değerlendirmesine ve standartlara uygun çevresel raporlama ve kurumsal sürdürülebilirlik sistemlerini desteklemesine olanak tanır.',
+      subtitle: 'Küresel standartlara uygun kurumsal düzeyde sürdürülebilirlik altyapısı ile karbon emisyonlarınızı ölçün, izleyin ve azaltın.',
       description: 'Çözümlerimiz, çevresel verileri anlamlı içgörülere dönüştürerek şeffaf raporlama, performans değerlendirmesi ve sürdürülebilirlik odaklı karar alma süreçlerini destekler.',
-      cta1: 'Ürünleri Keşfet',
+      cta1: 'Platformları Keşfet',
       cta2: 'İletişime Geç',
       trusted: 'Dünya çapında sürdürülebilirlik liderlerinin güvendiği platform',
     },
@@ -214,7 +214,7 @@ export const translations = {
     // How It Works Section
     howItWorks: {
       title: 'Nasıl Çalışır',
-      sectionTitle: 'Basit 4 Adımlı Süreç',
+      sectionTitle: 'İş Akışımız',
       steps: [
         {
           title: 'Veri Toplama',
