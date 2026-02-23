@@ -471,20 +471,20 @@ export default function Page() {
         
         <div className="container mx-auto px-4 max-w-5xl text-center relative z-10">
           <ScrollReveal>
-            <div className="bg-white/10 backdrop-blur-2xl border-2 border-white/30 rounded-3xl p-16 shadow-2xl">
-              <h2 className="text-5xl md:text-6xl font-black text-white mb-8 leading-tight">
+            <div className="bg-white/10 backdrop-blur-2xl border-2 border-white/30 rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 sm:mb-8 leading-tight">
                 {t.finalCta.title}
               </h2>
               
-              <div className="flex flex-col sm:flex-row justify-center gap-6">
-                <Link className="group inline-flex items-center justify-center px-12 py-5 text-xl font-black text-emerald-700 bg-white rounded-full shadow-2xl hover:shadow-white/50 transition-all hover:scale-105" href="/products">
+              <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
+                <Link className="group inline-flex items-center justify-center px-8 sm:px-12 py-4 sm:py-5 text-lg sm:text-xl font-black text-emerald-700 bg-white rounded-full shadow-2xl hover:shadow-white/50 transition-all hover:scale-105" href="/products">
                   {t.finalCta.button1}
-                  <Icon className="w-6 h-6 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none">
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6 ml-2 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none">
                     <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                   </Icon>
                 </Link>
                 
-                <Link className="inline-flex items-center justify-center px-12 py-5 text-xl font-black text-white border-4 border-white/50 rounded-full hover:bg-white/10 hover:border-white transition-all hover:scale-105" href="/contact">
+                <Link className="inline-flex items-center justify-center px-8 sm:px-12 py-4 sm:py-5 text-lg sm:text-xl font-black text-white border-4 border-white/50 rounded-full hover:bg-white/10 hover:border-white transition-all hover:scale-105" href="/contact">
                   {t.finalCta.button2}
                 </Link>
               </div>
