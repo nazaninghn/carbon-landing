@@ -20,6 +20,16 @@
   --shadow-dashboard:    0 25px 80px -12px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.06);
 }
 
+/* Hide native video controls overlay on all browsers */
+video::-webkit-media-controls,
+video::-webkit-media-controls-enclosure,
+video::-webkit-media-controls-panel,
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
 @layer base {
   body {
     font-family: 'Inter', sans-serif;

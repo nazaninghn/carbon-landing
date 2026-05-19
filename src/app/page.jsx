@@ -51,7 +51,10 @@ export default function Page() {
         <video
           src={HERO_VIDEO}
           autoPlay loop muted playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          disablePictureInPicture
+          x-webkit-airplay="deny"
+          className="absolute inset-0 w-full h-full object-cover z-0 [&::-webkit-media-controls]{display:none}"
+          style={{ WebkitMediaControls: 'none' }}
         />
 
         {/* Top fade for navbar legibility */}
