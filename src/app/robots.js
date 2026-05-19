@@ -6,7 +6,7 @@ export default function robots() {
         allow: '/',
       },
     ],
-    sitemap: 'https://carbonless.network/sitemap.xml',
-    host: 'https://carbonless.network',
+    sitemap: 'https://www.carbonless.network/sitemap.xml',
+    host: 'https://www.carbonless.network',
   };
 }

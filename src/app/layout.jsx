@@ -2,7 +2,7 @@ import '@/styles/globals.css';
 import { LanguageProvider } from '@/components/LanguageProvider';
 import JsonLd from '@/components/JsonLd';
 
-const SITE_URL = 'https://carbonless.network';
+const SITE_URL = 'https://www.carbonless.network';
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),

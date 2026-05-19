@@ -4,12 +4,12 @@ export default function JsonLd() {
     '@graph': [
       {
         '@type': 'Organization',
-        '@id': 'https://carbonless.network/#org',
+        '@id': 'https://www.carbonless.network/#org',
         name: 'Carbonless Network',
-        url: 'https://carbonless.network',
+        url: 'https://www.carbonless.network',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://carbonless.network/logo.png',
+          url: 'https://www.carbonless.network/logo.png',
         },
         description:
           'Carbonless Network develops digital infrastructure for carbon accounting and sustainability assessment aligned with ISO 14064-1 and the GHG Protocol.',
@@ -22,10 +22,10 @@ export default function JsonLd() {
       },
       {
         '@type': 'WebSite',
-        '@id': 'https://carbonless.network/#website',
-        url: 'https://carbonless.network',
+        '@id': 'https://www.carbonless.network/#website',
+        url: 'https://www.carbonless.network',
         name: 'Carbonless Network',
-        publisher: { '@id': 'https://carbonless.network/#org' },
+        publisher: { '@id': 'https://www.carbonless.network/#org' },
       },
       {
         '@type': 'SoftwareApplication',

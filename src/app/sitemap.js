@@ -1,4 +1,4 @@
-const SITE_URL = 'https://carbonless.network';
+const SITE_URL = 'https://www.carbonless.network';
 
 export default function sitemap() {
   return [
