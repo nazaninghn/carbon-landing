@@ -6,23 +6,23 @@ export function LanguageSwitcher() {
   const { language, changeLanguage } = useLanguage();
 
   return (
-    <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-3 py-1.5 border border-emerald-100">
+    <div className="flex items-center gap-0.5 border border-border rounded-full p-0.5 bg-background">
       <button
         onClick={() => changeLanguage('en')}
-        className={`px-3 py-1 text-sm font-medium rounded-full transition-all ${
+        className={`px-3 py-1 text-xs font-medium rounded-full transition-all ${
           language === 'en'
-            ? 'bg-emerald-600 text-white'
-            : 'text-gray-600 hover:text-emerald-600'
+            ? 'bg-foreground text-background'
+            : 'text-muted-foreground hover:text-foreground'
         }`}
       >
         EN
       </button>
       <button
         onClick={() => changeLanguage('tr')}
-        className={`px-3 py-1 text-sm font-medium rounded-full transition-all ${
+        className={`px-3 py-1 text-xs font-medium rounded-full transition-all ${
           language === 'tr'
-            ? 'bg-emerald-600 text-white'
-            : 'text-gray-600 hover:text-emerald-600'
+            ? 'bg-foreground text-background'
+            : 'text-muted-foreground hover:text-foreground'
         }`}
       >
         TR

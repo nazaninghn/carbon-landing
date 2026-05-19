@@ -1,196 +1,161 @@
 'use client';
 
-import { useState } from 'react';
-import { Badge } from '@/components/Badge';
-import { Button } from '@/components/Button';
-import { Icon } from '@/components/Icon';
-import { Image } from '@/components/Image';
-import { Input } from '@/components/Input';
-import { Link } from '@/components/Link';
-import { Text } from '@/components/Text';
+import { useState }    from 'react';
+import { Icon }        from '@/components/Icon';
 import { useLanguage } from '@/components/LanguageProvider';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import Navbar          from '@/components/Navbar';
+import { ScrollReveal } from '@/components/ScrollReveal';
 
 export default function ContactPage() {
   const { t } = useLanguage();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
+  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [sent, setSent] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+  const submit = e => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    const formData = new FormData(e.target);
-
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setSubmitStatus('success');
-        e.target.reset();
-      } else {
-        setSubmitStatus('error');
-      }
-    } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
+    setSent(true);
   };
 
+  const isEN = t.hero?.title?.includes('Carbon');
+
   return (
-    <div className="bg-slate-50 text-slate-900 pt-20">
-      {/* Header */}
-      <header id="main-header" className="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-emerald-100">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="flex items-center justify-between h-20">
-            <Link className="flex items-center gap-2 group" href="/">
-              <div className="w-10 h-10 flex items-center justify-center">
-                <Image 
-                  src="/logo.png"
-                  alt="Carbonless Network Logo"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <Text variant="bold" className="text-xl font-bold text-emerald-950 tracking-tight">Carbonless Network</Text>
-            </Link>
-            
-            <nav className="hidden md:flex items-center gap-8">
-              <Link variant="nav" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors" href="/">{t.nav.home}</Link>
-              <Link variant="nav" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors" href="/products">{t.nav.products}</Link>
-              <Link variant="nav" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors" href="/methodology">{t.nav.methodology}</Link>
-              <Link variant="nav" className="text-sm font-medium text-gray-600 hover:text-emerald-600 transition-colors" href="/about">{t.nav.about}</Link>
-              <Link variant="nav" className="text-sm font-medium text-emerald-600 transition-colors" href="/contact">{t.nav.contact}</Link>
-            </nav>
-            
-            <div className="flex items-center gap-4">
-              <LanguageSwitcher />
-            </div>
-          </div>
-        </div>
-      </header>
+    <div className="bg-white text-foreground">
+      <Navbar currentPath="/contact" />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-24 overflow-hidden">
-        {/* Background Image with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image 
-            src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&q=80"
-            alt="Contact background"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/92 via-emerald-50/88 to-white/95"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
-          <Badge className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-800 text-sm font-medium mb-6">
+      {/* Page header */}
+      <section className="pt-28 pb-16 px-6 text-center border-b border-border">
+        <div className="max-w-xl mx-auto">
+          <span className="inline-block text-xs font-semibold uppercase tracking-widest text-emerald-600 mb-4">
             {t.nav.contact}
-          </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">{t.contact.title}</h1>
-          <p className="text-xl text-slate-600">{t.contact.subtitle}</p>
+          </span>
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground leading-tight mb-5">
+            {isEN ? "Let's Talk" : 'Bize Ulaşın'}
+          </h1>
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+            {isEN
+              ? 'Reach out and we will get back to you within 24 hours.'
+              : '24 saat içinde size geri döneceğiz.'}
+          </p>
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4 max-w-2xl">
-          <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-xl">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Web3Forms Access Key */}
-              <input type="hidden" name="access_key" value="406a5beb-159f-4fa6-abd6-ebf7311f7fcd" />
-              
-              {/* Optional: Redirect after submission */}
-              <input type="hidden" name="redirect" value="false" />
-              
-              {/* Optional: Custom subject */}
-              <input type="hidden" name="subject" value="New Contact Form Submission from Carbonless Network" />
-              
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">{t.contact.name}</label>
-                <Input 
-                  type="text" 
-                  name="name"
-                  placeholder={t.contact.name} 
-                  className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500" 
-                  required
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">{t.contact.email}</label>
-                <Input 
-                  type="email" 
-                  name="email"
-                  placeholder="info@carbonless.network" 
-                  className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500" 
-                  required
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">{t.contact.message}</label>
-                <textarea 
-                  name="message"
-                  rows="6" 
-                  placeholder={t.contact.message} 
-                  className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
-                  required
-                ></textarea>
-              </div>
-              
-              {/* Success Message */}
-              {submitStatus === 'success' && (
-                <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-lg">
-                  <div className="flex items-center gap-2 text-emerald-800">
-                    <Icon className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </Icon>
-                    <span className="font-semibold">Message sent successfully!</span>
-                  </div>
+      {/* Contact layout */}
+      <section className="py-20 md:py-28 px-6">
+        <div className="container mx-auto max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+
+            {/* Info */}
+            <ScrollReveal>
+              <div className="space-y-8">
+                <div>
+                  <span className="inline-block text-xs font-semibold uppercase tracking-widest text-emerald-600 mb-4">Contact Info</span>
+                  <h2 className="font-display text-3xl md:text-4xl text-foreground leading-tight mb-5">
+                    {isEN ? 'Get in Touch' : 'İletişime Geçin'}
+                  </h2>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {isEN
+                      ? 'We are here to help you with carbon accounting, sustainability assessment, and platform onboarding.'
+                      : 'Karbon muhasebesi, sürdürülebilirlik değerlendirmesi ve platform entegrasyonu konularında size yardımcı olmaktan memnuniyet duyarız.'}
+                  </p>
                 </div>
-              )}
-              
-              {/* Error Message */}
-              {submitStatus === 'error' && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                  <div className="flex items-center gap-2 text-red-800">
-                    <Icon className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-                      <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </Icon>
-                    <span className="font-semibold">Something went wrong. Please try again.</span>
-                  </div>
+
+                <div className="space-y-5">
+                  {[
+                    { icon: 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', label: 'Email', value: 'info@carbonless.network' },
+                    { icon: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z', label: 'Phone', value: '212-613 58 80' },
+                    { icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z', label: 'Location', value: t.about?.parentCompany?.location ?? 'Istanbul, Turkey' },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-5 h-5 text-emerald-600" viewBox="0 0 24 24" fill="none">
+                          <path d={item.icon} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </Icon>
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-0.5">{item.label}</p>
+                        <p className="text-sm text-foreground">{item.value}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
+
+                <div className="pt-4 border-t border-border">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">Parent Company</p>
+                  <a href="https://www.academiadanismanlik.com/" target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm text-foreground hover:text-emerald-600 transition-colors font-medium">
+                    Academia Danışmanlık
+                    <Icon className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none">
+                      <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </Icon>
+                  </a>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            {/* Form */}
+            <ScrollReveal delay={100}>
+              {sent ? (
+                <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-10 text-center">
+                  <div className="w-12 h-12 rounded-full bg-emerald-600 flex items-center justify-center mx-auto mb-4">
+                    <Icon className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none">
+                      <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </Icon>
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-2">
+                    {isEN ? 'Message Sent!' : 'Mesajınız Gönderildi!'}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">
+                    {isEN ? "We'll be in touch within 24 hours." : '24 saat içinde geri döneceğiz.'}
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={submit} className="space-y-5">
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
+                      {isEN ? 'Name' : 'Ad Soyad'}
+                    </label>
+                    <input
+                      name="name" value={form.name} onChange={handle} required
+                      placeholder={isEN ? 'Your name' : 'Adınız'}
+                      className="w-full px-4 py-3 text-sm rounded-xl border border-border bg-gray-50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-emerald-400 focus:bg-white transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
+                      {isEN ? 'Email' : 'E-posta'}
+                    </label>
+                    <input
+                      name="email" type="email" value={form.email} onChange={handle} required
+                      placeholder={isEN ? 'your@email.com' : 'eposta@adresiniz.com'}
+                      className="w-full px-4 py-3 text-sm rounded-xl border border-border bg-gray-50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-emerald-400 focus:bg-white transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
+                      {isEN ? 'Message' : 'Mesaj'}
+                    </label>
+                    <textarea
+                      name="message" value={form.message} onChange={handle} required rows={5}
+                      placeholder={isEN ? 'How can we help you?' : 'Size nasıl yardımcı olabiliriz?'}
+                      className="w-full px-4 py-3 text-sm rounded-xl border border-border bg-gray-50 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-emerald-400 focus:bg-white transition-colors resize-none"
+                    />
+                  </div>
+                  <button type="submit"
+                    className="w-full flex items-center justify-center rounded-full px-7 py-3.5 text-sm font-medium bg-foreground text-background hover:opacity-90 transition-opacity">
+                    {isEN ? 'Send Message' : 'Mesaj Gönder'}
+                  </button>
+                </form>
               )}
-              
-              <Button 
-                type="submit" 
-                disabled={isSubmitting}
-                className="w-full px-8 py-4 text-base font-semibold text-white transition-all duration-200 bg-emerald-600 rounded-full hover:bg-emerald-700 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? 'Sending...' : t.contact.send}
-              </Button>
-            </form>
-            
-            <div className="mt-8 pt-8 border-t border-slate-200 text-center">
-              <p className="text-slate-600 mb-2">{t.contact.email}</p>
-              <a href="mailto:info@carbonless.network" className="text-emerald-600 font-semibold hover:text-emerald-700">
-                info@carbonless.network
-              </a>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-slate-50 text-slate-600 py-12 border-t border-slate-200">
-        <div className="container mx-auto px-4 max-w-7xl text-center">
-          <p className="text-sm">© 2026 Carbonless Network. All rights reserved.</p>
+      <footer className="py-8 border-t border-border px-6">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <p className="text-xs text-muted-foreground">{t.footer.copyright}</p>
+          <a href="/" className="text-xs text-muted-foreground hover:text-foreground transition-colors">Carbonless Network</a>
         </div>
       </footer>
     </div>
