@@ -80,8 +80,7 @@ export default function RootLayout({ children }) {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <link rel="icon" href="/logo.png" type="image/png" />
-        {/* Google Search Console verification — replace content value after getting it from GSC */}
-        {/* <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" /> */}
+        <meta name="google-site-verification" content="YfAhJkmG72ChXj28Al_Bd9eVM9bqB-4pBZPijjV6V24" />
       </head>
       <body>
         <JsonLd />
