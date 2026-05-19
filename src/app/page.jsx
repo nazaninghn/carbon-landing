@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Icon }             from '@/components/Icon';
@@ -23,11 +23,19 @@ const fadeUp = (delay = 0) => ({
 export default function Page() {
   const { t } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.play().catch(() => {});
+  }, []);
 
   const isEN = t.hero.title.includes('Carbon');
 
@@ -49,12 +57,11 @@ export default function Page() {
 
         {/* Video BG */}
         <video
+          ref={videoRef}
           src={HERO_VIDEO}
           autoPlay loop muted playsInline
           disablePictureInPicture
-          x-webkit-airplay="deny"
-          className="absolute inset-0 w-full h-full object-cover z-0 [&::-webkit-media-controls]{display:none}"
-          style={{ WebkitMediaControls: 'none' }}
+          className="absolute inset-0 w-full h-full object-cover z-0"
         />
 
         {/* Top fade for navbar legibility */}
