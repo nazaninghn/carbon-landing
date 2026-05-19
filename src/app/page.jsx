@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Menu, X, Sparkles, Play } from 'lucide-react';
 import { Badge } from '@/components/Badge';
 import { Icon } from '@/components/Icon';
 import { Image } from '@/components/Image';
@@ -10,352 +11,205 @@ import { useLanguage } from '@/components/LanguageProvider';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { Card3D } from '@/components/Card3D';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import BoomerangVideoBg from '@/components/BoomerangVideoBg';
+
+const HERO_VIDEO = '/hero-video.mp4';
+const HERO_FONT = '"Neue Haas Grotesk Display Pro 55 Roman", "Neue Haas Grotesk Text Pro", "Helvetica Neue", Helvetica, Arial, sans-serif';
 
 export default function Page() {
   const { t } = useLanguage();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
+
+  const navLinks = [
+    { href: '/',            label: t.nav.home,        active: true  },
+    { href: '/products',    label: t.nav.products                   },
+    { href: '/methodology', label: t.nav.methodology                },
+    { href: '/about',       label: t.nav.about                      },
+    { href: '/contact',     label: t.nav.contact                    },
+  ];
 
   return (
     <div className="bg-white">
 
-      {/* ── Header ─────────────────────────────────────────── */}
-      <header className="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-sm">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            <Link className="flex items-center gap-2.5 group" href="/">
-              <div className="relative w-9 h-9 md:w-12 md:h-12 flex items-center justify-center">
-                <Image src="/logo.png" alt="Carbonless Network Logo" className="w-full h-full object-contain" />
-              </div>
-              <div>
-                <Text className="text-base md:text-xl font-black bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Carbonless</Text>
-                <Text className="text-[10px] md:text-xs text-emerald-600 font-bold tracking-widest">NETWORK</Text>
-              </div>
-            </Link>
+      {/* ════════════════════════════════════════════════════
+          HERO — full-screen boomerang video
+      ════════════════════════════════════════════════════ */}
+      <section className="relative w-full min-h-screen sm:h-screen overflow-hidden">
 
-            <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-              <Link className="text-sm font-bold text-emerald-600" href="/">{t.nav.home}</Link>
-              <Link className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors" href="/products">{t.nav.products}</Link>
-              <Link className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors" href="/methodology">{t.nav.methodology}</Link>
-              <Link className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors" href="/about">{t.nav.about}</Link>
-              <Link className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors" href="/contact">{t.nav.contact}</Link>
-            </nav>
+        {/* Video background */}
+        <BoomerangVideoBg
+          src={HERO_VIDEO}
+          poster="/hero.jpg"
+          className="absolute inset-0 w-full h-full"
+        />
 
-            <div className="flex items-center gap-3">
-              <LanguageSwitcher />
-              <Link className="hidden md:inline-flex items-center justify-center px-5 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full hover:shadow-lg hover:shadow-emerald-200 transition-all hover:scale-105" href="/contact">
+        {/* Subtle green overlay */}
+        <div className="absolute inset-0 bg-[#1f2a1d]/25 pointer-events-none" />
+
+        {/* ── Navbar ─────────────────────────────────────── */}
+        <nav className="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-4 sm:px-6 md:px-10 py-4 sm:py-6">
+
+          {/* Logo */}
+          <a href="/" className="flex items-center gap-2 text-[#2d3a2a]">
+            <img src="/logo.png" alt="Carbonless" className="w-8 h-8 object-contain" />
+            <span
+              className="text-lg sm:text-xl font-semibold tracking-tight"
+              style={{ fontFamily: HERO_FONT }}
+            >
+              Carbonless<sup className="text-[10px] font-medium">TM</sup>
+            </span>
+          </a>
+
+          {/* Desktop pill nav */}
+          <div className="hidden lg:flex items-center gap-1 bg-white/70 backdrop-blur-md rounded-full pl-6 pr-1 py-1 shadow-sm border border-white/60">
+            {navLinks.map((link, i) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className={`text-sm px-3 py-2 transition-colors ${
+                  link.active
+                    ? 'font-semibold text-[#1f2a1d]'
+                    : 'font-medium text-[#4b5b47] hover:text-[#1f2a1d]'
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="/contact"
+              className="ml-2 bg-[#1f2a1d] hover:bg-[#2a3827] text-white text-sm font-medium px-5 py-2.5 rounded-full transition-colors"
+            >
+              {t.hero.cta2}
+            </a>
+          </div>
+
+          {/* Right: language + hamburger */}
+          <div className="flex items-center gap-3 sm:gap-5 text-[#2d3a2a]">
+            <LanguageSwitcher />
+            <button
+              onClick={() => setMenuOpen((v) => !v)}
+              className="lg:hidden relative flex items-center justify-center w-10 h-10 rounded-full bg-white/70 backdrop-blur-md border border-white/60 text-[#1f2a1d] transition-all duration-300 hover:bg-white/90"
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+            >
+              <Menu className={`w-5 h-5 absolute transition-all duration-300 ${menuOpen ? 'opacity-0 rotate-90 scale-50' : 'opacity-100 rotate-0 scale-100'}`} />
+              <X    className={`w-5 h-5 absolute transition-all duration-300 ${menuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-50'}`} />
+            </button>
+          </div>
+        </nav>
+
+        {/* ── Mobile overlay ─────────────────────────────── */}
+        <div
+          className={`lg:hidden fixed inset-0 z-20 transition-opacity duration-300 ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+          onClick={() => setMenuOpen(false)}
+        >
+          <div className="absolute inset-0 bg-[#1f2a1d]/40 backdrop-blur-sm" />
+        </div>
+
+        {/* ── Mobile drawer ──────────────────────────────── */}
+        <div
+          className={`lg:hidden fixed top-0 right-0 bottom-0 z-20 w-[85%] max-w-sm bg-white/95 backdrop-blur-xl shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        >
+          <div className="flex flex-col h-full pt-24 px-8 pb-8">
+            <div className="flex flex-col gap-1">
+              {navLinks.map((link, i) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className={`text-2xl font-semibold text-[#1f2a1d] py-4 border-b border-[#1f2a1d]/10 transition-all duration-500 ${menuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}
+                  style={{ transitionDelay: menuOpen ? `${150 + i * 70}ms` : '0ms' }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+            <div
+              className={`mt-8 transition-all duration-500 ${menuOpen ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}
+              style={{ transitionDelay: menuOpen ? '430ms' : '0ms' }}
+            >
+              <a
+                href="/contact"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center justify-center bg-[#1f2a1d] hover:bg-[#2a3827] text-white text-sm font-semibold px-5 py-3 rounded-full transition-colors"
+              >
                 {t.hero.cta2}
-              </Link>
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 text-slate-700 hover:text-emerald-600 transition-colors"
-                aria-label="Toggle menu"
-              >
-                <Icon className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-                  {mobileMenuOpen ? (
-                    <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  ) : (
-                    <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  )}
-                </Icon>
-              </button>
+              </a>
             </div>
           </div>
-
-          {mobileMenuOpen && (
-            <div className="md:hidden border-t border-slate-200 py-4">
-              <nav className="flex flex-col gap-1">
-                {[
-                  { href: '/', label: t.nav.home, active: true },
-                  { href: '/products', label: t.nav.products },
-                  { href: '/methodology', label: t.nav.methodology },
-                  { href: '/about', label: t.nav.about },
-                  { href: '/contact', label: t.nav.contact },
-                ].map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`px-4 py-2.5 text-sm font-semibold rounded-lg transition-colors ${item.active ? 'text-emerald-600 bg-emerald-50' : 'text-slate-700 hover:text-emerald-600 hover:bg-slate-50'}`}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-                <Link
-                  className="inline-flex items-center justify-center mx-4 mt-2 px-6 py-3 text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-600 rounded-full"
-                  href="/contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {t.hero.cta2}
-                </Link>
-              </nav>
-            </div>
-          )}
         </div>
-      </header>
 
-      {/* ── Hero ───────────────────────────────────────────── */}
-      <section
-        className="relative overflow-hidden pt-16 md:pt-20"
-        style={{ background: 'linear-gradient(135deg, #041409 0%, #071f0e 45%, #0a2e14 75%, #041409 100%)' }}
-      >
-        {/* Grid / HUD overlay */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage:
-              'linear-gradient(rgba(74,222,128,1) 1px, transparent 1px), linear-gradient(90deg, rgba(74,222,128,1) 1px, transparent 1px)',
-            backgroundSize: '64px 64px',
-            opacity: 0.055,
-          }}
-        />
-
-        {/* Sky glow */}
-        <div
-          className="absolute -top-24 left-1/2 -translate-x-1/2 w-[700px] lg:w-[1000px] h-[350px] pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse at center, rgba(74,222,128,0.16) 0%, transparent 65%)' }}
-        />
-
-        {/* Side blobs */}
-        <div className="absolute top-1/3 -left-32 w-72 h-72 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(34,197,94,0.13) 0%, transparent 70%)' }} />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(20,184,166,0.11) 0%, transparent 70%)' }} />
-
-        {/* Floating particles */}
-        <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-50 animate-bounce-slow" />
-        <div className="absolute top-1/2 right-1/3 w-1 h-1 rounded-full bg-teal-300 opacity-40 animate-pulse" style={{ animationDelay: '1.2s' }} />
-        <div className="absolute bottom-1/3 left-1/2 w-2 h-2 rounded-full bg-green-400 opacity-25 animate-bounce-slow" style={{ animationDelay: '2.4s' }} />
-
-        <div className="relative z-10 container mx-auto px-4 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center py-10 md:py-14 lg:py-20">
-
-            {/* Left: text */}
-            <div className="space-y-5 md:space-y-7 text-center lg:text-left order-2 lg:order-1">
-
-              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 backdrop-blur-sm animate-fade-in">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-60" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+        {/* ── Hero heading — centered top ─────────────────── */}
+        <div className="relative z-10 flex flex-col items-center text-center pt-28 sm:pt-32 md:pt-36 px-4 sm:px-6">
+          <h1
+            className="font-normal leading-[0.95] text-[#336443] text-[2rem] sm:text-4xl md:text-5xl lg:text-[4.5rem] xl:text-[5rem] max-w-4xl"
+            style={{ fontFamily: HERO_FONT, letterSpacing: '-0.035em' }}
+          >
+            {t.hero.title.includes('Carbon') ? (
+              <>
+                Carbon &amp;{' '}
+                <span className="text-[#85AB8B]">
+                  Sustainability
+                  <br className="hidden sm:block" /> Intelligence
                 </span>
-                <span className="text-emerald-300 text-xs sm:text-sm font-bold tracking-wide">{t.hero.badge}</span>
-              </div>
+              </>
+            ) : (
+              <>
+                Karbon ve{' '}
+                <span className="text-[#85AB8B]">
+                  Sürdürülebilirlik
+                  <br className="hidden sm:block" /> Zekası
+                </span>
+              </>
+            )}
+          </h1>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-black leading-[1.08] animate-slide-up">
-                {t.hero.title.includes('Carbon') ? (
-                  <>
-                    <span className="text-white">Carbon &amp;</span>
-                    <br />
-                    <span
-                      className="text-transparent bg-clip-text"
-                      style={{ backgroundImage: 'linear-gradient(90deg, #4ade80, #86efac, #5eead4)' }}
-                    >
-                      Sustainability
-                    </span>
-                    <br />
-                    <span className="text-white">Intelligence</span>
-                  </>
-                ) : (
-                  <>
-                    <span className="text-white">Karbon ve</span>
-                    <br />
-                    <span
-                      className="text-transparent bg-clip-text"
-                      style={{ backgroundImage: 'linear-gradient(90deg, #4ade80, #86efac, #5eead4)' }}
-                    >
-                      Sürdürülebilirlik
-                    </span>
-                    <br />
-                    <span className="text-white">Zeka Platformu</span>
-                  </>
-                )}
-              </h1>
+          <p className="mt-5 sm:mt-7 text-[#4b5b47] text-sm sm:text-base md:text-lg leading-relaxed max-w-md px-2">
+            {t.hero.subtitle}
+          </p>
+        </div>
 
-              <p className="text-sm sm:text-base md:text-lg leading-[1.75] max-w-lg mx-auto lg:mx-0 animate-fade-in-delay" style={{ color: 'rgba(167,243,208,0.65)' }}>
-                {t.hero.subtitle}
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start animate-fade-in-delay-2">
-                <Link
-                  href="/products"
-                  className="group inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-black rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(74,222,128,0.45)]"
-                  style={{ background: 'linear-gradient(135deg, #22c55e, #10b981)', color: '#041409' }}
-                >
-                  {t.hero.cta1}
-                  <Icon className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none">
-                    <path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </Icon>
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base font-bold rounded-xl backdrop-blur-sm transition-all duration-300 hover:scale-105 text-emerald-300 hover:text-white"
-                  style={{ border: '2px solid rgba(74,222,128,0.35)' }}
-                >
-                  {t.hero.cta2}
-                </Link>
-              </div>
-
-              <div className="flex items-center gap-4 justify-center lg:justify-start animate-fade-in-delay-3">
-                <div className="flex -space-x-2">
-                  {[
-                    'linear-gradient(135deg,#4ade80,#14b8a6)',
-                    'linear-gradient(135deg,#22d3ee,#3b82f6)',
-                    'linear-gradient(135deg,#2dd4bf,#22c55e)',
-                  ].map((g, i) => (
-                    <div key={i} className="w-9 h-9 rounded-full border-2 shadow-lg" style={{ background: g, borderColor: '#041409' }} />
-                  ))}
-                  <div className="w-9 h-9 rounded-full border-2 flex items-center justify-center font-black text-emerald-300" style={{ background: 'rgba(20,83,45,0.8)', borderColor: '#041409', fontSize: '9px' }}>
-                    500+
-                  </div>
-                </div>
-                <div>
-                  <p className="text-xs sm:text-sm font-black text-white">500+ Organizations</p>
-                  <p className="text-[11px] sm:text-xs" style={{ color: 'rgba(134,239,172,0.6)' }}>{t.hero.trusted}</p>
-                </div>
-              </div>
-
-              {/* Compliance badges */}
-              <div className="flex flex-wrap gap-2 justify-center lg:justify-start animate-fade-in-delay-3">
-                {['ISO 14064-1', 'GHG Protocol', 'ESG'].map((label) => (
-                  <span
-                    key={label}
-                    className="px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold"
-                    style={{ background: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.25)', color: '#86efac' }}
-                  >
-                    {label}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Right: Image + floating cards */}
-            <div className="relative animate-fade-in-delay order-1 lg:order-2">
-
-              {/* Dot grids — desktop only */}
-              <div className="hidden lg:grid absolute -top-3 -left-3 gap-1.5 z-20" style={{ gridTemplateColumns: 'repeat(4,1fr)' }}>
-                {Array(12).fill(0).map((_, i) => (
-                  <div key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: 'rgba(74,222,128,0.3)' }} />
-                ))}
-              </div>
-              <div className="hidden lg:grid absolute -bottom-3 -right-3 gap-1.5 z-20" style={{ gridTemplateColumns: 'repeat(4,1fr)' }}>
-                {Array(12).fill(0).map((_, i) => (
-                  <div key={i} className="w-1.5 h-1.5 rounded-full" style={{ background: 'rgba(20,184,166,0.3)' }} />
-                ))}
-              </div>
-
-              {/* Main image card */}
-              <div
-                className="relative rounded-xl sm:rounded-2xl overflow-hidden"
-                style={{
-                  border: '1px solid rgba(74,222,128,0.2)',
-                  boxShadow: '0 0 60px rgba(74,222,128,0.1), 0 30px 60px rgba(0,0,0,0.5)',
-                }}
-              >
-                {/* LIVE indicator */}
-                <div
-                  className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full z-20"
-                  style={{ background: 'rgba(4,20,9,0.75)', backdropFilter: 'blur(10px)', border: '1px solid rgba(74,222,128,0.25)' }}
-                >
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" />
-                  </span>
-                  <span className="text-[10px] font-bold text-emerald-300">LIVE</span>
-                </div>
-
-                {/* The hero image — prominent and full-width */}
-                <Image
-                  src="/hero.jpg"
-                  alt="Carbon Intelligence Platform — Sustainability Analytics"
-                  className="w-full h-auto object-cover"
-                />
-
-                {/* Subtle bottom gradient for stats readability */}
-                <div
-                  className="absolute bottom-0 left-0 right-0"
-                  style={{ background: 'linear-gradient(to top, rgba(4,20,9,0.88) 0%, rgba(4,20,9,0.4) 55%, transparent 100%)', paddingTop: '60px' }}
-                >
-                  <div className="p-3 sm:p-4">
-                    <div className="grid grid-cols-4 gap-1.5 sm:gap-2">
-                      {[
-                        { val: '92%', sub: 'Accuracy' },
-                        { val: '500+', sub: 'Organizations' },
-                        { val: 'ISO 14064', sub: 'GHG Protocol' },
-                        { val: 'Real-time', sub: 'Monitoring' },
-                      ].map((s) => (
-                        <div
-                          key={s.sub}
-                          className="rounded-lg p-2 text-center"
-                          style={{ background: 'rgba(255,255,255,0.08)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.1)' }}
-                        >
-                          <p className="text-xs sm:text-sm font-black text-white leading-none mb-0.5">{s.val}</p>
-                          <p className="text-[9px] sm:text-[10px]" style={{ color: 'rgba(167,243,208,0.75)' }}>{s.sub}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating: Bar Chart — desktop only */}
-              <div
-                className="hidden lg:block absolute -left-14 top-1/3 rounded-2xl p-3.5 shadow-2xl w-40 z-10"
-                style={{ background: 'rgba(4,20,9,0.9)', backdropFilter: 'blur(20px)', border: '1px solid rgba(74,222,128,0.2)' }}
-              >
-                <div className="flex items-center justify-between mb-2.5">
-                  <p className="text-[9px] font-bold uppercase tracking-wider" style={{ color: 'rgba(134,239,172,0.7)' }}>CO₂ Reduction</p>
-                  <span className="text-[9px] font-black text-emerald-400">↓ 42%</span>
-                </div>
-                <div className="flex items-end gap-1 h-12">
-                  {[35, 52, 40, 68, 55, 78, 65].map((h, i) => (
-                    <div key={i} className="flex-1 rounded-sm" style={{ height: `${h}%`, background: i === 5 ? '#4ade80' : 'rgba(74,222,128,0.28)' }} />
-                  ))}
-                </div>
-                <div className="flex justify-between mt-1.5">
-                  {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((d, i) => (
-                    <span key={i} className="text-[8px]" style={{ color: 'rgba(134,239,172,0.4)' }}>{d}</span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Floating: Accuracy ring — desktop only */}
-              <div
-                className="hidden lg:block absolute -right-10 top-6 rounded-2xl p-3.5 shadow-2xl z-10 text-center"
-                style={{ background: 'rgba(4,20,9,0.9)', backdropFilter: 'blur(20px)', border: '1px solid rgba(74,222,128,0.2)', minWidth: '88px' }}
-              >
-                <svg width="44" height="44" className="mx-auto mb-1.5" viewBox="0 0 44 44">
-                  <circle cx="22" cy="22" r="18" fill="none" stroke="rgba(74,222,128,0.15)" strokeWidth="4" />
-                  <circle
-                    cx="22" cy="22" r="18" fill="none"
-                    stroke="#4ade80" strokeWidth="4" strokeLinecap="round"
-                    strokeDasharray={`${2 * Math.PI * 18 * 0.92} ${2 * Math.PI * 18 * 0.08}`}
-                    strokeDashoffset={2 * Math.PI * 18 * 0.25}
-                  />
-                  <text x="22" y="26" textAnchor="middle" fill="#4ade80" fontSize="9" fontWeight="900">92%</text>
-                </svg>
-                <p className="text-[9px] font-bold" style={{ color: 'rgba(134,239,172,0.7)' }}>Accuracy</p>
-              </div>
-
-              {/* Floating: ISO badge — desktop only */}
-              <div
-                className="hidden lg:block absolute -right-10 bottom-20 rounded-xl px-3 py-2.5 shadow-xl z-10"
-                style={{ background: 'rgba(74,222,128,0.1)', backdropFilter: 'blur(20px)', border: '1px solid rgba(74,222,128,0.3)' }}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: 'rgba(74,222,128,0.2)' }}>
-                    <Icon className="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none">
-                      <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </Icon>
-                  </div>
-                  <div>
-                    <p className="text-[11px] font-black text-emerald-300">ISO 14064-1</p>
-                    <p className="text-[9px]" style={{ color: 'rgba(134,239,172,0.6)' }}>Certified</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        {/* ── Bottom-left CTA block ───────────────────────── */}
+        <div className="absolute left-4 right-4 sm:right-auto sm:left-6 md:left-10 bottom-6 sm:bottom-8 md:bottom-10 z-10 max-w-xs sm:max-w-sm">
+          <div className="flex items-center gap-2 text-[#3d5638] mb-3">
+            <Sparkles className="w-4 h-4" />
+            <span className="text-sm font-semibold" style={{ fontFamily: HERO_FONT }}>
+              ISO 14064-1<sup className="text-[9px]">TM</sup>
+            </span>
+          </div>
+          <p className="text-[#3d5638]/85 text-xs leading-relaxed mb-5 font-medium">
+            {t.methodologySection?.text?.slice(0, 110) ?? 'ISO 14064-1 & GHG Protocol compliant carbon accounting and ESG-based sustainability intelligence for organizations.'}
+            {(t.methodologySection?.text?.length ?? 0) > 110 ? '…' : ''}
+          </p>
+          <div className="flex items-center gap-4 flex-wrap">
+            <a
+              href="/products"
+              className="bg-[#3d5638] hover:bg-[#2d4228] text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors shadow-sm"
+            >
+              {t.hero.cta1}
+            </a>
+            <a
+              href="/contact"
+              className="text-[#3d5638] text-sm font-semibold hover:opacity-75 transition-opacity"
+            >
+              {t.hero.cta2} →
+            </a>
           </div>
         </div>
 
-        {/* Bottom fade to white */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none" style={{ background: 'linear-gradient(to top, #ffffff, transparent)' }} />
+        {/* ── Bottom-right: standards badge ──────────────── */}
+        <div className="hidden sm:flex absolute right-6 md:right-10 bottom-8 md:bottom-10 z-10 items-center gap-2 text-[#2d3a2a] text-sm">
+          <div className="flex items-center justify-center w-6 h-6 rounded-full bg-white/30 backdrop-blur-sm border border-white/50">
+            <Play className="w-3 h-3 fill-[#2d3a2a] text-[#2d3a2a] ml-0.5" />
+          </div>
+          <span className="font-medium">GHG Protocol</span>
+          <span className="text-[#4b5b47]">ESG · ISO 14064</span>
+        </div>
       </section>
 
       {/* ── Methodology ────────────────────────────────────── */}
