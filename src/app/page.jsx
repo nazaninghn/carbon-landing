@@ -129,12 +129,6 @@ export default function Page() {
           {/* ── Hero body — centered ───────────────────────── */}
           <div className="flex-1 flex flex-col items-center justify-center px-6 text-center pb-8">
 
-            <motion.div {...fadeUp(0)} className="mb-6">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background/90 px-4 py-1.5 text-sm text-muted-foreground">
-                {isEN ? 'ISO 14064-1 & GHG Protocol Aligned ✨' : 'ISO 14064-1 & GHG Protokolü Uyumlu ✨'}
-              </span>
-            </motion.div>
-
             <motion.h1
               {...fadeUp(0.1)}
               className="font-display text-[2.6rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[0.92] tracking-tight text-foreground max-w-4xl"

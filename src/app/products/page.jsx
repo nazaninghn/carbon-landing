@@ -63,10 +63,10 @@ export default function ProductsPage() {
                     </li>
                   ))}
                 </ul>
-                <Link href="/contact"
+                <a href="https://www.carbonless.info/" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-medium bg-foreground text-background hover:opacity-90 transition-opacity">
                   {t.products.button}
-                </Link>
+                </a>
               </div>
             </div>
           </ScrollReveal>
