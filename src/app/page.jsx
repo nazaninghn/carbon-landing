@@ -134,9 +134,9 @@ export default function Page() {
               className="font-display text-[2.6rem] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] leading-[0.92] tracking-tight text-foreground max-w-4xl"
             >
               {isEN ? (
-                <>Carbon & <em className="italic">Sustainability</em><br />Intelligence Platform.</>
+                <>Carbon & <em className="italic">Sustainability</em><br />Platform.</>
               ) : (
-                <>Karbon & <em className="italic">Sürdürülebilirlik</em><br />Zeka Platformu.</>
+                <>Karbon & <em className="italic">Sürdürülebilirlik</em><br />Platformu.</>
               )}
             </motion.h1>
 

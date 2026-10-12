@@ -11,7 +11,7 @@ export const metadata = {
     template: '%s | Carbonless Network',
   },
   description:
-    'Measure, track, and reduce your carbon emissions with enterprise-grade sustainability infrastructure aligned with ISO 14064-1 and the GHG Protocol. Carbon accounting and ESG assessment platforms.',
+    'Measure, track, and reduce your carbon emissions with enterprise-grade sustainability infrastructure aligned with ISO 14064-1 and the GHG Protocol. Carbon accounting and ESG (Environmental, Social, and Governance) assessment platforms.',
   keywords: [
     'carbon accounting',
     'sustainability platform',

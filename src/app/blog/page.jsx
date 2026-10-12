@@ -55,7 +55,7 @@ export default function Page() {
             <Text variant="bold" className="text-emerald-600 font-semibold tracking-wide uppercase text-sm"> The Green Ledger </Text>
             <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mt-4 mb-6"> Sustainability Insights </h1>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-               Expert analysis on climate policy, carbon markets, and ESG reporting. 
+               Expert analysis on climate policy, carbon markets, and ESG (Environmental, Social, and Governance) reporting. 
             </p>
           </div>
         </section>

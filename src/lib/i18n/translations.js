@@ -26,7 +26,7 @@ export const translations = {
       text2: 'We focus on making environmental performance measurable, transparent, and manageable through reliable methodologies and scalable digital tools.',
       features: [
         'Carbon footprint calculation',
-        'Sustainability and ESG performance evaluation',
+        'Sustainability and ESG (Environmental, Social, and Governance) performance evaluation',
         'Environmental data analysis',
         'Reporting and performance monitoring',
       ],
@@ -44,7 +44,7 @@ export const translations = {
         'Carbon reporting and documentation',
       ],
       sustindexTitle: 'Sustindex',
-      sustindexDesc: 'Sustindex is a sustainability assessment platform that evaluates organizational sustainability performance using structured ESG indicators and KPI-based scoring methodologies.',
+      sustindexDesc: 'Sustindex is a sustainability assessment platform that evaluates organizational sustainability performance using structured ESG (Environmental, Social, and Governance) indicators and KPI-based scoring methodologies.',
       sustindexFeatures: [
         'Sustainability performance assessment',
         'ESG indicator evaluation',
@@ -98,7 +98,7 @@ export const translations = {
     methodologySection: {
       badge: 'Structured Methodology',
       title: 'Methodology and Calculation Framework',
-      text: 'Carbonless Network is built on structured methodologies aligned with international standards such as ISO 14064 and ESG frameworks. Our platform enables transparent carbon accounting, sustainability performance evaluation, and standards-aligned institutional reporting.',
+      text: 'Carbonless Network is built on structured methodologies aligned with international standards such as ISO 14064 and ESG (Environmental, Social, and Governance) frameworks. Our platform enables transparent carbon accounting, sustainability performance evaluation, and standards-aligned institutional reporting.',
     },
     // Methodology Page
     methodology: {
@@ -184,7 +184,7 @@ export const translations = {
       text2: 'Amacımız, çevresel performansı güvenilir metodolojiler ve ölçeklenebilir dijital araçlarla ölçülebilir, şeffaf ve yönetilebilir hale getirmektir.',
       features: [
         'Karbon ayak izi hesaplama',
-        'ESG ve sürdürülebilirlik performans değerlendirmesi',
+        'ESG (Çevresel, Sosyal ve Yönetişim) ve sürdürülebilirlik performans değerlendirmesi',
         'Çevresel veri analizi',
         'Raporlama ve performans izleme',
       ],
@@ -202,7 +202,7 @@ export const translations = {
         'Karbon raporlama ve dokümantasyon',
       ],
       sustindexTitle: 'Sustindex',
-      sustindexDesc: 'Sustindex, ESG göstergeleri ve KPI tabanlı metodolojiler kullanarak kuruluşların sürdürülebilirlik performansını değerlendiren bir platformdur.',
+      sustindexDesc: 'Sustindex, ESG (Çevresel, Sosyal ve Yönetişim) göstergeleri ve KPI tabanlı metodolojiler kullanarak kuruluşların sürdürülebilirlik performansını değerlendiren bir platformdur.',
       sustindexFeatures: [
         'Sürdürülebilirlik performans değerlendirmesi',
         'ESG göstergeleri analizi',
@@ -256,7 +256,7 @@ export const translations = {
     methodologySection: {
       badge: 'Yapılandırılmış Metodoloji',
       title: 'Metodoloji ve Hesaplama Çerçevesi',
-      text: 'Carbonless Network, ISO 14064 ve ESG çerçeveleri gibi uluslararası standartlara uygun yapılandırılmış metodolojiler üzerine inşa edilmiştir. Platformumuz şeffaf karbon muhasebesi, sürdürülebilirlik performans değerlendirmesi ve standartlara uygun kurumsal raporlama sağlar.',
+      text: 'Carbonless Network, ISO 14064 ve ESG (Çevresel, Sosyal ve Yönetişim) çerçeveleri gibi uluslararası standartlara uygun yapılandırılmış metodolojiler üzerine inşa edilmiştir. Platformumuz şeffaf karbon muhasebesi, sürdürülebilirlik performans değerlendirmesi ve standartlara uygun kurumsal raporlama sağlar.',
     },
     // Methodology Page
     methodology: {
